@@ -22,6 +22,8 @@ alias t="tmux"
 alias y="yazi"
 alias vim="nvim"
 alias v="nvim"
+alias mkvenv="python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt"
+alias venv="source venv/bin/activate"
 
 alias school='cd /Users/rv/Library/Mobile\ Documents/com~apple~CloudDocs/school'
 
