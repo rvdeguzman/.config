@@ -2,7 +2,7 @@
 /* Palette */
 @define-color bg #000000;
 @define-color fg #c1c1c1;
-@define-color accent #5f8787;
+@define-color accent #fbcb97;
 @define-color line #252530;
 @define-color visual #333333;
 @define-color warn #f3be7c;
@@ -14,8 +14,8 @@
   border: none;
   border-radius: 0;
   min-height: 0;
-  font-family: IosevkaTerm Nerd Font, JetBrainsMono Nerd Font, monospace;
-  font-size: 12px;
+  font-family: "Iosevka Nerd Font Mono";
+  font-size: 16px;
 }
 
 window#waybar {
@@ -31,7 +31,7 @@ window#waybar {
 }
 
 #workspaces button.active {
-  color: #ffffff;
+  color: #FFFFFF;
   background: @visual;
   border-bottom: 2px solid @accent;
 }
