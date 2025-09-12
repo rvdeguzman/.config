@@ -214,7 +214,7 @@
    (org-block            :background bg-alt)
    (org-block-begin-line :background bg-alt :foreground comments)
    (org-block-end-line   :background bg-alt :foreground comments)
-   (org-level-1 :foreground magenta :weight 'bold :height 1.25)
+   (org-level-1 :foreground magenta)
    (org-level-2 :foreground violet  :weight 'bold :height 1.1)
    (org-level-3 :foreground blue    :weight 'bold :height 1.0)
    (org-level-4 :foreground green   :weight 'bold)

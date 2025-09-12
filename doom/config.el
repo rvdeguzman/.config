@@ -14,7 +14,7 @@
 ;; (setq org-roam-file-extensions '("org"))
 
 ;; Display template: title + tags (avoid ${type:15})
-(setq org-roam-node-display-template
+(setq org-roam-node-display-template
       (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
 
 (setq org-roam-capture-templates
@@ -62,5 +62,17 @@
 
 (after! org
   (setq org-startup-with-latex-preview t) ;; auto render formulas
-  (setq org-latex-create-formula-image-program 'dvisvgm) ;; svg formulas
+  (setq org-preview-latex-default-process 'dvisvgm) ;; svg formulas
+  (setq org-format-latex-options
+        (plist-put org-format-latex-options :background "Transparent"))
   )
+
+(use-package! org-download
+  :after org
+  :config
+  (setq org-download-method 'directory
+        org-download-image-dir "./images"
+        org-download-heading-lvl nil
+        org-download-timestamp "_%Y%m%d_%H%M%S")
+  :bind (:map org-mode-map
+         ("C-c i v" . org-download-clipboard)))

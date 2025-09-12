@@ -6,3 +6,5 @@
 ;; (unpin! websocket)
 
 (package! kanagawa-themes)
+
+(package! org-download)
