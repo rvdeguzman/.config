@@ -1,0 +1,46 @@
+
+{
+  "layer": "top",
+  "position": "top",
+  "height": 26,
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["pulseaudio", "battery", "network", "tray"],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "0",   // 👈 maps workspace 10 → label "0"
+          "default": "?"
+    },
+  },
+  "clock": { "format": "{:%a %b %d  %H:%M}" },
+  "pulseaudio": {
+    "format": "  {volume}%",
+    "format-muted": "  muted",
+    "on-click": "pavucontrol"
+  },
+  "battery": {
+    "format": "{capacity}%",
+    "format-charging": "  {capacity}%",
+    "states": { "warning": 20, "critical": 10 }
+  },
+  "network": {
+    "format-wifi": "  {essid}",
+    "format-ethernet": "󰈀  {ipaddr}",
+    "format-disconnected": "󰖪"
+  },
+  "tray": { "icon-size": 16, "spacing": 8 }
+
+}
+
+
+
