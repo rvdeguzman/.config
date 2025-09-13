@@ -25,13 +25,11 @@ alt-j = 'focus down'
 alt-k = 'focus up'
 alt-l = 'focus right'
 
-# Move windows
 alt-shift-h = 'move left'
 alt-shift-j = 'move down'
 alt-shift-k = 'move up'
 alt-shift-l = 'move right'
 
-# Workspace switching
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
@@ -43,7 +41,6 @@ alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 alt-0 = 'workspace 10'
 
-# Move containers to workspace
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
 alt-shift-3 = 'move-node-to-workspace 3'
@@ -55,41 +52,25 @@ alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 alt-shift-0 = 'move-node-to-workspace 10'
 
-# Floating
 alt-space = 'layout floating tiling'
-
-# Layout controls
 alt-s = 'layout accordion vertical'        # stack
 alt-w = 'layout accordion horizontal'      # tab
 alt-e = 'layout tiles horizontal vertical'
 
-# Workspace navigation (similar to your i3 tab bindings)
 alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-# Resize
 alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
-# Enter service mode (for additional commands)
 alt-shift-semicolon = 'mode service'
 alt-shift-c = 'reload-config'
-alt-f = 'fullscreen'
 
 [mode.service.binding]
-# Exit service mode
 esc = ['reload-config', 'mode main']
-
-# Reset layout
 r = ['flatten-workspace-tree', 'mode main']
-
-# Layout toggles
 f = ['layout floating tiling', 'mode main']
 
-# Close all windows except current
-backspace = ['close-all-windows-but-current', 'mode main']
-
-# Window joining
 alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
@@ -112,15 +93,3 @@ enter = 'mode main'
 [[on-window-detected]]
 check-further-callbacks = true
 run = 'layout floating'
-
-[workspace-to-monitor-force-assignment]
-1 = 'main'
-2 = 'main'
-3 = 'main'
-4 = 'main'
-5 = 'main'
-6 = ['secondary', 'main']
-7 = ['secondary', 'main']
-8 = ['secondary', 'main']
-9 = ['secondary', 'main']
-10 = ['secondary', 'main']
