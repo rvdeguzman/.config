@@ -3,7 +3,7 @@
 ;; theme
 (setq doom-theme 'doom-dark-funeral)
 
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 14))
+(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 14))
 (setq display-line-numbers-type 'relative)
 
 ;; Org paths (set these before org loads)
@@ -73,6 +73,16 @@
   (setq org-download-method 'directory
         org-download-image-dir "./images"
         org-download-heading-lvl nil
-        org-download-timestamp "_%Y%m%d_%H%M%S")
+        org-download-timestamp "_%Y%m%d_%H%M%S"
+        org-download-annotate-function (lambda (_link) ""))
   :bind (:map org-mode-map
          ("C-c i v" . org-download-clipboard)))
+(defun org-roam-capture-here ()
+  "new org roam node in pwd"
+  (interactive)
+  (let ((org-roam-directory default-directory))
+    (org-roam-capture)))
+
+(map! :leader
+      :desc "org-roam capture here"
+      "n h" #'org-roam-capture-here)
