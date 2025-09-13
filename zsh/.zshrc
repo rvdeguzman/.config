@@ -1,7 +1,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 export PATH=$HOME/.local/bin/:$PATH
-export PATH=$HOME/bin/
+export PATH=$PATH:$HOME/bin/
 
 export ANTHROPIC_API_KEY=
 export GEMINI_API_KEY=
