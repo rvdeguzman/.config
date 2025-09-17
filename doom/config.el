@@ -86,3 +86,13 @@
 (map! :leader
       :desc "org-roam capture here"
       "n h" #'org-roam-capture-here)
+
+(map! :n "C-h" #'evil-window-left
+      :n "C-j" #'evil-window-down
+      :n "C-k" #'evil-window-up
+      :n "C-l" #'evil-window-right)
+
+(map! :leader
+      :prefix "w"
+      "h" #'evil-window-split
+      "v" #'evil-window-vsplit)
