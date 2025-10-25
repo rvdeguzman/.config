@@ -29,7 +29,7 @@
     "on-click": "pavucontrol"
   },
   "battery": {
-    "format": "{capacity}%",
+    "format": "  {capacity}%",
     "format-charging": "  {capacity}%",
     "states": { "warning": 20, "critical": 10 }
   },

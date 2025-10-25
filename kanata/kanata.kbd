@@ -1,0 +1,46 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+  esc 1 2 3 4 5 6 7 8 9 0 - =
+  tab q w e r t y u i o p [ ]
+  caps a s d f g h j k l ; ' \
+  lshift z x c v b n m , . /
+  lctrl lalt           spc      ralt rctrl
+)
+
+(defalias
+  esc (tap-hold-press 90 125 esc lctrl)
+  nav (tap-hold 200 200 lalt (layer-while-held nav))
+  mouse (tap-hold 200 200 ralt (layer-while-held mouse))
+)
+
+(defvar
+  tap-time 100
+  hold-time 150
+)
+
+(deflayer base
+  @esc 1 2 3 4 5 6 7 8 9 0 - =
+  tab q w e r t y u i o p [ ]
+  @esc a s d f g h j k l ; ' \
+  lshift z x c v b n m , . /
+  lctrl @nav           spc      @mouse rctrl
+)
+
+(deflayer nav
+  esc 1 2 3 4 5 6 7 8 9 0 - =
+  tab q w e r t y u i o p [ ]
+  esc a s d f g left down up right ; ' \
+  lshift z x c v b n m , . /
+  lctrl lalt           spc      @mouse rctrl
+)
+
+(deflayer mouse
+  esc 1 2 3 4 5 6 7 8 9 0 - =
+  tab q w e r t y u i o p [ ]
+  esc a mmid mrgt mlft g left down up right ; ' \
+  lshift z x c v b n m , . /
+  lctrl lalt           spc      @mouse rctrl
+)
