@@ -12,8 +12,12 @@
 
 (defalias
   esc (tap-hold-press 90 125 esc lctrl)
-  nav (tap-hold 200 200 lalt (layer-while-held nav))
+  h-arrow (tap-hold 200 200 h left)
+  j-arrow (tap-hold 200 200 j down)
+  k-arrow (tap-hold 200 200 k up)
+  l-arrow (tap-hold 200 200 l right)
   mouse (tap-hold 200 200 ralt (layer-while-held mouse))
+  alt-layer (layer-while-held alt)
 )
 
 (defvar
@@ -22,20 +26,21 @@
 )
 
 (deflayer base
-  @esc 1 2 3 4 5 6 7 8 9 0 - =
-  tab q w e r t y u i o p [ ]
-  @esc a s d f g h j k l ; ' \
-  lshift z x c v b n m , . /
-  lctrl @nav           spc      @mouse rctrl
-)
-
-(deflayer nav
   esc 1 2 3 4 5 6 7 8 9 0 - =
   tab q w e r t y u i o p [ ]
-  esc a s d f g left down up right ; ' \
+  @esc a s d f g @h-arrow @j-arrow @k-arrow @l-arrow ; ' \
   lshift z x c v b n m , . /
-  lctrl lalt           spc      @mouse rctrl
+  lctrl @alt-layer           spc      @mouse rctrl
 )
+
+(deflayer alt
+  (multi lalt esc) (multi lalt 1) (multi lalt 2) (multi lalt 3) (multi lalt 4) (multi lalt 5) (multi lalt 6) (multi lalt 7) (multi lalt 8) (multi lalt 9) (multi lalt 0) (multi lalt -) (multi lalt =)
+  (multi lalt tab) (multi lalt q) (multi lalt w) (multi lalt e) (multi lalt r) (multi lalt t) (multi lalt y) (multi lalt u) (multi lalt i) (multi lalt o) (multi lalt p) (multi lalt [) (multi lalt ])
+  (multi lalt caps) (multi lalt a) (multi lalt s) (multi lalt d) (multi lalt f) (multi lalt g) left down up right (multi lalt ;) (multi lalt ') (multi lalt \)
+  lshift (multi lalt z) (multi lalt x) (multi lalt c) (multi lalt v) (multi lalt b) (multi lalt n) (multi lalt m) (multi lalt ,) (multi lalt .) (multi lalt /)
+   lctrl _           spc      _ rctrl
+)
+
 
 (deflayer mouse
   esc 1 2 3 4 5 6 7 8 9 0 - =
