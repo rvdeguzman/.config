@@ -1,5 +1,6 @@
 (defcfg
   process-unmapped-keys yes
+  linux-dev-names-exclude ("Goodix Capacitive TouchScreen")
 )
 
 (defsrc
@@ -30,7 +31,7 @@
 )
 
 (deflayer alt
-  (multi lalt esc) (multi lalt 1) (multi lalt 2) (multi lalt 3) (multi lalt 4) (multi lalt 5) (multi lalt 6) (multi lalt 7) (multi lalt 8) (multi lalt 9) (multi lalt 0) (multi lalt -) (multi lalt =)
+  esc (multi lalt 1) (multi lalt 2) (multi lalt 3) (multi lalt 4) (multi lalt 5) (multi lalt 6) (multi lalt 7) (multi lalt 8) (multi lalt 9) (multi lalt 0) (multi lalt -) (multi lalt =)
   (multi lalt tab) (multi lalt q) (multi lalt w) (multi lalt e) (multi lalt r) (multi lalt t) (multi lalt y) (multi lalt u) (multi lalt i) (multi lalt o) (multi lalt p) (multi lalt [) (multi lalt ])
   (multi lalt caps) (multi lalt a) (multi lalt s) (multi lalt d) (multi lalt f) (multi lalt g) left down up right (multi lalt ;) (multi lalt ') (multi lalt \)
   lshift (multi lalt z) (multi lalt x) (multi lalt c) (multi lalt v) (multi lalt b) (multi lalt n) (multi lalt m) (multi lalt ,) (multi lalt .) (multi lalt /)
