@@ -7,5 +7,10 @@ if [[ $url == *github.com* ]]; then
         url="${url/:/\/}" 
         url="https://$url"
     fi
-    open "$url"
+    
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        open "$url"
+    else
+        xdg-open "$url"
+    fi
 fi
