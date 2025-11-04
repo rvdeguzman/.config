@@ -25,9 +25,12 @@ window#waybar {
 }
 
 #workspaces button {
-  color: @fg;
-  padding: 0 8px;
-  background: transparent;
+   color: @fg;
+   padding: 0 8px;
+   background: transparent;
+   font-size: 28px;
+   min-width: 28px;
+   min-height: 28px;
 }
 
 #workspaces button.active {
@@ -41,8 +44,10 @@ window#waybar {
 }
 
 #clock, #pulseaudio, #battery, #network, #tray {
-  padding: 0 10px;
-  margin: 0 2px;
+   padding: 0 10px;
+   margin: 0 2px;
+   font-size: 18px;
+   min-height: 18px;
 }
 
 #pulseaudio.muted { color: @comment; }

@@ -7,13 +7,13 @@
   "modules-center": ["clock"],
   "modules-right": ["pulseaudio", "battery", "network", "tray"],
   "hyprland/workspaces": {
-        "format": "<span size='larger'>{icon}</span>",
+        "format": "<span size='x-large' font-weight='bold'>{icon}</span>",
         "on-click": "activate",
         "format-icons": {
             "active": "\uf444",
             "default": "\uf4c3"
         },
-        "icon-size": 16,
+        "icon-size": 48,
         "sort-by-number": true,
         "persistent-workspaces": {
             "1": [],
