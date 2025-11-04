@@ -22,8 +22,21 @@ alias mkvenv="python3 -m venv venv && source venv/bin/activate && pip install -r
 alias venv="source venv/bin/activate"
 alias ogh=open-github
 alias rl=roamlink
+alias ls="eza"
+alias cd="z"
 
 f() {
     local dir
     dir="$(fd --type d | fzf)" && cd "$dir"
 }
+
+ff() {
+    local dir
+    dir="$(zoxide query -l | fzf)" && zoxide add "$dir" && cd "$dir"
+}
+
+eval "$(zoxide init zsh)"
+
+
+
+
