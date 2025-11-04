@@ -1,4 +1,4 @@
-.DS_Store
+*.DS_Store*
 atuin/
 avante*/
 fish/
@@ -23,3 +23,10 @@ pulse/
 emacs/
 bob/
 discord/
+clara-verse/
+comfy-cli/
+mozilla/
+simple-update-notifier/
+systemd/
+vesktop/
+mimeapps.list

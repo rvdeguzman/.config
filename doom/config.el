@@ -66,16 +66,18 @@
   )
 
 (use-package! org-download
-  :after org
-  :config
-  (setq org-download-method 'directory
-        org-download-image-dir "./images"
-        org-download-heading-lvl nil
-        org-download-timestamp "_%Y%m%d_%H%M%S"
-        org-download-annotate-function (lambda (_link) "")
-        org-download-screenshot-method "grimblast save area %s"))
-  :bind (:map org-mode-map
-         ("C-c i v" . org-download-clipboard)))
+   :after org
+   :config
+   (setq org-download-method 'directory
+         org-download-image-dir "./images"
+         org-download-heading-lvl nil
+         org-download-timestamp "_%Y%m%d_%H%M%S"
+         org-download-annotate-function (lambda (_link) "")
+         org-download-screenshot-method "grimblast save area %s"))
+
+(after! org-download
+   (map! :map org-mode-map
+         "C-c i v" #'org-download-clipboard))
 (defun org-roam-capture-here ()
   "new org roam node in pwd"
   (interactive)

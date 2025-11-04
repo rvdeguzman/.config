@@ -5,7 +5,7 @@
   "height": 26,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "battery", "network"],
+  "modules-right": ["pulseaudio", "battery", "network", "tray"],
   "hyprland/workspaces": {
     "format": "{icon}",
     "format-icons": {
