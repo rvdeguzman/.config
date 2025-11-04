@@ -22,3 +22,4 @@ alias mkvenv="python3 -m venv venv && source venv/bin/activate && pip install -r
 alias venv="source venv/bin/activate"
 alias ogh=open-github
 alias rl=roamlink
+alias f=f
