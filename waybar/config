@@ -1,46 +1,52 @@
-
 {
   "layer": "top",
   "position": "top",
-  "height": 26,
+  "height": 24,
+  "spacing": 6,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
   "modules-right": ["pulseaudio", "battery", "network", "tray"],
   "hyprland/workspaces": {
-    "format": "{icon}",
-    "format-icons": {
-          "1": "1",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5",
-          "6": "6",
-          "7": "7",
-          "8": "8",
-          "9": "9",
-          "10": "0",   // 👈 maps workspace 10 → label "0"
-          "default": "?"
+        "format": "<span size='larger'>{icon}</span>",
+        "on-click": "activate",
+        "format-icons": {
+            "active": "\uf444",
+            "default": "\uf4c3"
+        },
+        "icon-size": 16,
+        "sort-by-number": true,
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        }
     },
-  },
-  "clock": { "format": "{:%a %b %d  %H:%M}" },
+
+  "clock": { "format": "{:%d.%m.%Y | %H:%M}" },
+
   "pulseaudio": {
     "format": "  {volume}%",
-    "format-muted": "  muted",
-    "on-click": "pavucontrol"
+    "format-muted": "  muted"
   },
+
   "battery": {
-    "format": "{capacity}%",
+    "format": " {capacity}%",
     "format-charging": "  {capacity}%",
     "states": { "warning": 20, "critical": 10 }
   },
+
   "network": {
     "format-wifi": "  {essid}",
     "format-ethernet": "󰈀  {ipaddr}",
     "format-disconnected": "󰖪"
   },
-  "tray": { "icon-size": 16, "spacing": 8 }
 
+  "tray": { "icon-size": 16, "spacing": 16 }
 }
-
-
-
