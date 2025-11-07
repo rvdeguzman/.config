@@ -3,7 +3,7 @@
 ;; theme
 (setq doom-theme 'doom-dark-funeral)
 
-(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 14))
+(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 24))
 (setq display-line-numbers-type 'relative)
 
 (setq org-directory "~/org"
