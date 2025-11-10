@@ -3,7 +3,7 @@
 ;; theme
 (setq doom-theme 'doom-dark-funeral)
 
-(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 14))
+(setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
 (setq display-line-numbers-type 'relative)
 
 (setq org-directory "~/org"
@@ -12,6 +12,22 @@
 
 (setq org-roam-node-display-template
       (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+
+(defun org-roam-dailies-capture-today-with-agenda ()
+  "Capture today's daily and add it to org-agenda-files."
+  (interactive)
+  (org-roam-dailies-capture-today)
+  (when (buffer-file-name)
+    (unless (member (buffer-file-name) org-agenda-files)
+      (setq org-agenda-files (append org-agenda-files (list (buffer-file-name)))))))
+
+(defun org-roam-capture-project ()
+  "Capture a new project and add it to org-agenda-files."
+  (interactive)
+  (org-roam-capture '(:keys "p"))
+  (when (buffer-file-name)
+    (unless (member (buffer-file-name) org-agenda-files)
+      (setq org-agenda-files (append org-agenda-files (list (buffer-file-name)))))))
 
 (setq org-roam-capture-templates
       '(("s" "subject" plain "%?"
@@ -23,6 +39,9 @@
         ("g" "goal" plain "%?"
          :if-new (file+head "goals/${title}.org" "#+title: ${title}\n#+filetags: :goal:\n")
          :immediate-finish t :unnarrowed t)
+        ("p" "project" plain "* Elevator Pitch\n%?\n\n* Type\nSoftware / App / SaaS / Idea\n\n* Status\nActive / Paused / Completed / Idea\n\n* Tech Stack\n\n* Timesheet\n| Date | Hours | Notes |\n|------|-------|-------||\n\n* Next Steps\n\n* Notes\n"
+         :if-new (file+head "projects/${title}.org" "#+title: ${title}\n#+filetags: :project:\n")
+         :immediate-finish nil :unnarrowed t)
         ("r" "reference" plain "%?"
          :if-new (file+head "reference/${title}.org" "#+title: ${title}\n")
          :immediate-finish t :unnarrowed t)))
@@ -66,18 +85,16 @@
   )
 
 (use-package! org-download
-   :after org
-   :config
-   (setq org-download-method 'directory
-         org-download-image-dir "./images"
-         org-download-heading-lvl nil
-         org-download-timestamp "_%Y%m%d_%H%M%S"
-         org-download-annotate-function (lambda (_link) "")
-         org-download-screenshot-method "grimblast save area %s"))
-
-(after! org-download
-   (map! :map org-mode-map
-         "C-c i v" #'org-download-clipboard))
+  :after org
+  :bind (:map org-mode-map
+         ("C-c i v" . org-download-clipboard))
+  :config
+  (setq org-download-method 'directory
+        org-download-image-dir "./images"
+        org-download-heading-lvl nil
+        org-download-timestamp "_%Y%m%d_%H%M%S"
+        org-download-annotate-function (lambda (_link) "")
+        org-download-screenshot-method "grimblast save area %s"))
 (defun org-roam-capture-here ()
   "new org roam node in pwd"
   (interactive)
