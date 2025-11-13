@@ -79,11 +79,12 @@
   :commands vterm)
 
 (after! org
-  (setq org-startup-with-latex-preview t) ;; auto render formulas
-  (setq org-preview-latex-default-process 'dvisvgm) ;; svg formulas
+  (setq org-startup-with-latex-preview t)
+  (setq org-preview-latex-default-process 'dvisvgm)
   (setq org-format-latex-options
-        (plist-put org-format-latex-options :background "Transparent" :scale 0.8))
-  )
+        (plist-put (plist-put org-format-latex-options 
+                             :scale 0.5)
+                   :background "Transparent")))
 
 (use-package! org-download
   :after org
