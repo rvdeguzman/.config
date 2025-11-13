@@ -83,7 +83,7 @@
   (setq org-preview-latex-default-process 'dvisvgm)
   (setq org-format-latex-options
         (plist-put (plist-put org-format-latex-options 
-                             :scale 0.5)
+                             :scale 0.8)
                    :background "Transparent")))
 
 (use-package! org-download
