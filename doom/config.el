@@ -82,7 +82,7 @@
   (setq org-startup-with-latex-preview t) ;; auto render formulas
   (setq org-preview-latex-default-process 'dvisvgm) ;; svg formulas
   (setq org-format-latex-options
-        (plist-put org-format-latex-options :background "Transparent"))
+        (plist-put org-format-latex-options :background "Transparent" :scale 0.8))
   )
 
 (use-package! org-download
@@ -115,3 +115,5 @@
       :prefix "w"
       "h" #'evil-window-split
       "v" #'evil-window-vsplit)
+
+(electric-pair-mode t)
