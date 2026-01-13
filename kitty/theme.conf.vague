@@ -6,7 +6,8 @@
 # Upstream: 	https://github.com/vague2k/vague.nvim/blob/main/extras/kitty/vague.conf
 
 foreground               #cdcdcd
-background               #141415
+# background               #141415
+background               #000000
 selection_foreground     #cdcdcd
 selection_background     #252530
 
