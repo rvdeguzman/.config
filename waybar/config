@@ -29,7 +29,7 @@
         }
     },
 
-  "clock": { "format": "{:%d.%m.%Y | %H:%M}" },
+  "clock": { "format": "{:%m.%d.%Y | %H:%M}" },
 
   "pulseaudio": {
     "format": "  {volume}%",
