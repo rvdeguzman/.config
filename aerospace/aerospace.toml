@@ -18,7 +18,7 @@ preset = 'qwerty'
 
 [mode.main.binding]
 alt-r = 'mode resize'
-alt-enter = "exec-and-forget /Applications/kitty.app/Contents/MacOS/kitty --directory ~"
+alt-enter = "exec-and-forget /Applications/Ghostty.app/Contents/MacOS/ghostty"
 
 alt-h = 'focus left'
 alt-j = 'focus down'
