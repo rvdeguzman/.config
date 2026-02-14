@@ -14,7 +14,7 @@
          "* Elevator Pitch\n%?\n\n* Type\nSoftware / App / SaaS / Idea\n\n* Status\nActive / Paused / Completed / Idea\n\n* Tech Stack\n\n* Timesheet\n| Date | Hours | Notes |\n|------|-------|-------|\n\n* Next Steps\n\n* Notes\n"
          :if-new (file+head "projects/${title}.org"
                             "#+title: ${title}\n#+filetags: :project:\n")
-         :unnarrowed t)
+         :immediate-finish t :unnarrowed t)
         ("c" "Class" plain
          "* Overview\n\n\
 - Instructor :: \n\
@@ -35,7 +35,7 @@
 * Lecture Index\n"
          :if-new (file+head "classes/%<%Y>/${slug}.org"
                             "#+title: ${title}\n#+filetags: :class:\n")
-         :unnarrowed t)
+         :immediate-finish t :unnarrowed t)
         ("l" "Lecture" plain
          "* %<%Y-%m-%d> — ${title}\n\n\
 ** Key Topics\n\
@@ -47,13 +47,17 @@
 - [ ] \n"
          :if-new (file+head "lectures/%<%Y-%m-%d>-${slug}.org"
                             "#+title: ${title}\n#+filetags: :lecture:\n")
-         :unnarrowed t)
+         :immediate-finish t :unnarrowed t)
+        ("o" "Concept" plain
+         "* Summary\n%?\n\n* Key Points\n- \n\n* Related\n"
+         :if-new (file+head "concepts/${slug}.org"
+                            "#+title: ${title}\n#+filetags: :concept:\n")
+         :immediate-finish t :unnarrowed t)
         ("r" "Reference" plain "%?"
          :if-new (file+head "reference/${title}.org"
                             "#+title: ${title}\n")
          :immediate-finish t :unnarrowed t)))
 
-;; daily journal (plain org-capture, not org-roam-dailies)
 (defun my/open-daily-note ()
   "Open today's daily journal, creating it from template if new."
   (interactive)
@@ -93,8 +97,8 @@
   (setq org-agenda-files
         (list (expand-file-name "habits.org" org-directory)
               (expand-file-name "journal/" org-directory)
-              (expand-file-name "projects/" org-directory)
-              (expand-file-name "classes/" org-directory)))
+              (expand-file-name "roam/projects/" org-directory)
+              (expand-file-name "roam/classes/" org-directory)))
 
   ;; org-habit
   (add-to-list 'org-modules 'org-habit t)
