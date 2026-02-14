@@ -6,50 +6,65 @@
 (setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
 (setq display-line-numbers-type 'relative)
 
-(setq org-directory "~/org"
-      org-roam-directory (file-truename "~/org/roam")
-      org-agenda-files (list (file-truename "~/org/roam/dailies")))
+(setq org-directory "~/org")
 
-(setq org-roam-node-display-template
-      (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
-
-(defun org-roam-dailies-capture-today-with-agenda ()
-  "Capture today's daily and add it to org-agenda-files."
-  (interactive)
-  (org-roam-dailies-capture-today)
-  (when (buffer-file-name)
-    (unless (member (buffer-file-name) org-agenda-files)
-      (setq org-agenda-files (append org-agenda-files (list (buffer-file-name)))))))
-
-(defun org-roam-capture-project ()
-  "Capture a new project and add it to org-agenda-files."
-  (interactive)
-  (org-roam-capture '(:keys "p"))
-  (when (buffer-file-name)
-    (unless (member (buffer-file-name) org-agenda-files)
-      (setq org-agenda-files (append org-agenda-files (list (buffer-file-name)))))))
-
+;; org-roam capture templates
 (setq org-roam-capture-templates
-      '(("s" "subject" plain "%?"
-         :if-new (file+head "subjects/${title}.org" "#+title: ${title}\n#+filetags: :subject:\n")
-         :immediate-finish t :unnarrowed t)
-        ("c" "concept" plain "%?"
-         :if-new (file+head "concepts/${title}.org" "#+title: ${title}\n")
-         :immediate-finish t :unnarrowed t)
-        ("g" "goal" plain "%?"
-         :if-new (file+head "goals/${title}.org" "#+title: ${title}\n#+filetags: :goal:\n")
-         :immediate-finish t :unnarrowed t)
-        ("p" "project" plain "* Elevator Pitch\n%?\n\n* Type\nSoftware / App / SaaS / Idea\n\n* Status\nActive / Paused / Completed / Idea\n\n* Tech Stack\n\n* Timesheet\n| Date | Hours | Notes |\n|------|-------|-------||\n\n* Next Steps\n\n* Notes\n"
-         :if-new (file+head "projects/${title}.org" "#+title: ${title}\n#+filetags: :project:\n")
-         :immediate-finish nil :unnarrowed t)
-        ("r" "reference" plain "%?"
-         :if-new (file+head "reference/${title}.org" "#+title: ${title}\n")
+      '(("p" "Project" plain
+         "* Elevator Pitch\n%?\n\n* Type\nSoftware / App / SaaS / Idea\n\n* Status\nActive / Paused / Completed / Idea\n\n* Tech Stack\n\n* Timesheet\n| Date | Hours | Notes |\n|------|-------|-------|\n\n* Next Steps\n\n* Notes\n"
+         :if-new (file+head "projects/${title}.org"
+                            "#+title: ${title}\n#+filetags: :project:\n")
+         :unnarrowed t)
+        ("c" "Class" plain
+         "* Overview\n\n\
+- Instructor :: \n\
+- Semester :: \n\
+- Schedule :: \n\
+- Location :: \n\
+\n\
+* Syllabus\n\n\
+\n\
+* Important Dates\n\n\
+\n\
+* Assignments\n\n\
+\n\
+* Exams\n\n\
+\n\
+* Resources\n\n\
+\n\
+* Lecture Index\n"
+         :if-new (file+head "classes/%<%Y>/${slug}.org"
+                            "#+title: ${title}\n#+filetags: :class:\n")
+         :unnarrowed t)
+        ("l" "Lecture" plain
+         "* %<%Y-%m-%d> — ${title}\n\n\
+** Key Topics\n\
+- \n\n\
+** Notes\n\n\n\
+** Questions\n\
+- \n\n\
+** Action Items\n\
+- [ ] \n"
+         :if-new (file+head "lectures/%<%Y-%m-%d>-${slug}.org"
+                            "#+title: ${title}\n#+filetags: :lecture:\n")
+         :unnarrowed t)
+        ("r" "Reference" plain "%?"
+         :if-new (file+head "reference/${title}.org"
+                            "#+title: ${title}\n")
          :immediate-finish t :unnarrowed t)))
 
-;; org-roam-dailies templates
-(setq org-roam-dailies-capture-templates
-      '(("d" "default" entry "** Habits\n- [ ] Fasting\n- [ ] Exercise\n- [ ] Work\n\n** Timesheet\n| Task | Hours | Notes |\n|------|-------|-------|\n|      |       |       |\n\n** Notes\n%?"
-         :target (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n#+filetags: :daily:\n"))))
+;; daily journal (plain org-capture, not org-roam-dailies)
+(defun my/open-daily-note ()
+  "Open today's daily journal, creating it from template if new."
+  (interactive)
+  (let* ((dir (expand-file-name "journal/" org-directory))
+         (file (expand-file-name (format-time-string "%Y-%m-%d.org") dir)))
+    (unless (file-exists-p dir)
+      (make-directory dir t))
+    (find-file file)
+    (when (= (buffer-size) 0)
+      (insert (format-time-string
+               "#+title: %Y-%m-%d\n#+filetags: :daily:\n\n* Timesheet\n| Task | Hours | Notes |\n|------|-------|-------|\n|      |       |       |\n\n* Notes\n")))))
 
 ;; org-roam
 (use-package! org-roam
@@ -59,8 +74,7 @@
           ("C-c n f" . org-roam-node-find)
           ("C-c n g" . org-roam-graph)
           ("C-c n i" . org-roam-node-insert)
-          ("C-c n c" . org-roam-capture)
-          ("C-c n d" . org-roam-dailies-capture-today))
+          ("C-c n c" . org-roam-capture))
   :config
   (setq org-roam-node-display-template
         (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
@@ -74,15 +88,23 @@
         org-roam-ui-follow t
         org-roam-ui-update-on-save t))
 
-(use-package! vterm
-  :commands vterm)
-
 (after! org
-  (setq org-startup-with-latex-preview t) ;; auto render formulas
-  (setq org-preview-latex-default-process 'dvisvgm) ;; svg formulas
+  ;; agenda — targeted directories only
+  (setq org-agenda-files
+        (list (expand-file-name "habits.org" org-directory)
+              (expand-file-name "journal/" org-directory)
+              (expand-file-name "projects/" org-directory)
+              (expand-file-name "classes/" org-directory)))
+
+  ;; org-habit
+  (add-to-list 'org-modules 'org-habit t)
+  (setq org-habit-graph-column 60)
+
+  ;; latex preview
+  (setq org-startup-with-latex-preview t)
+  (setq org-preview-latex-default-process 'dvisvgm)
   (setq org-format-latex-options
-        (plist-put org-format-latex-options :background "Transparent"))
-  )
+        (plist-put org-format-latex-options :background "Transparent")))
 
 (use-package! org-download
   :after org
@@ -94,7 +116,9 @@
         org-download-heading-lvl nil
         org-download-timestamp "_%Y%m%d_%H%M%S"
         org-download-annotate-function (lambda (_link) "")
-        org-download-screenshot-method "grimblast save area %s"))
+        org-download-screenshot-method (if (eq system-type 'darwin)
+                                           "screencapture -i %s"
+                                         "grimblast save area %s")))
 (defun org-roam-capture-here ()
   "new org roam node in pwd"
   (interactive)
@@ -104,6 +128,11 @@
 (map! :leader
       :desc "org-roam capture here"
       "n h" #'org-roam-capture-here)
+
+(map! :leader
+      :desc "Open daily note"
+      "n d" #'my/open-daily-note)
+(map! "C-c n d" #'my/open-daily-note)
 
 (map! :n "C-h" #'evil-window-left
       :n "C-j" #'evil-window-down
