@@ -95,10 +95,12 @@
 (after! org
   ;; agenda — targeted directories only
   (setq org-agenda-files
-        (list (expand-file-name "habits.org" org-directory)
-              (expand-file-name "journal/" org-directory)
-              (expand-file-name "roam/projects/" org-directory)
-              (expand-file-name "roam/classes/" org-directory)))
+        (append (list (expand-file-name "habits.org" org-directory)
+                      (expand-file-name "journal/" org-directory)
+                      (expand-file-name "roam/projects/" org-directory))
+                (directory-files-recursively
+                 (expand-file-name "roam/classes/" org-directory)
+                 "\\.org$")))
 
   ;; org-habit
   (add-to-list 'org-modules 'org-habit t)
@@ -147,3 +149,47 @@
       :prefix "w"
       "h" #'evil-window-split
       "v" #'evil-window-vsplit)
+
+;; gptel — LLM integration
+(load! "secrets.el" doom-user-dir t)
+
+(use-package! gptel
+  :config
+  (setq gptel-model 'claude-sonnet-4-5-20250929
+        gptel-backend (gptel-make-anthropic "Claude"
+                        :stream t
+                        :key my/anthropic-api-key)
+        gptel-default-mode 'org-mode))
+
+(defun my/ai-explain-region (start end)
+  "Send selected region to LLM for explanation, insert response in a collapsible drawer."
+  (interactive "r")
+  (let ((text (buffer-substring-no-properties start end))
+        (insert-point (save-excursion (goto-char end) (end-of-line) (point))))
+    (gptel-request
+     (format "Explain the following concisely:\n\n%s" text)
+     :callback
+     (lambda (response _info)
+       (when response
+         (save-excursion
+           (goto-char insert-point)
+           (insert "\n:AI_EXPLAIN:\n" response "\n:END:\n")))))))
+
+(defun my/ai-ask (prompt)
+  "Ask the AI a question, insert response in a collapsible drawer after point."
+  (interactive "sAsk AI: ")
+  (let ((insert-point (save-excursion (end-of-line) (point))))
+    (gptel-request
+     prompt
+     :callback
+     (lambda (response _info)
+       (when response
+         (save-excursion
+           (goto-char insert-point)
+           (insert "\n:AI_EXPLAIN:\n" response "\n:END:\n")))))))
+
+(map! :leader
+      :prefix ("A" . "ai")
+      :desc "Ask AI" "a" #'my/ai-ask
+      :desc "Explain region" "e" #'my/ai-explain-region
+      :desc "Open gptel chat" "c" #'gptel)

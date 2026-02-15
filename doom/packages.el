@@ -8,3 +8,5 @@
 (package! kanagawa-themes)
 
 (package! org-download)
+
+(package! gptel)
