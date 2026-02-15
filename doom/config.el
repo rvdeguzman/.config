@@ -155,11 +155,15 @@
 
 (use-package! gptel
   :config
-  (setq gptel-model 'claude-sonnet-4-5-20250929
+  (setq gptel-model 'claude-haiku-4-5-20251001
         gptel-backend (gptel-make-anthropic "Claude"
                         :stream t
                         :key my/anthropic-api-key)
-        gptel-default-mode 'org-mode))
+        gptel-default-mode 'org-mode)
+
+  ;; default system prompt for all requests
+  (setq gptel--system-message
+        "You are a concise teaching assistant. Explain concepts clearly with examples when helpful. Keep responses brief and focused. Use plain text, not markdown."))
 
 (defun my/ai-explain-region (start end)
   "Send selected region to LLM for explanation, insert response in a collapsible drawer."
@@ -175,12 +179,14 @@
            (goto-char insert-point)
            (insert "\n:AI_EXPLAIN:\n" response "\n:END:\n")))))))
 
-(defun my/ai-ask (prompt)
-  "Ask the AI a question, insert response in a collapsible drawer after point."
-  (interactive "sAsk AI: ")
-  (let ((insert-point (save-excursion (end-of-line) (point))))
+(defun my/ai-ask (start end)
+  "Ask AI a question about the selected region. Response goes in a collapsible drawer."
+  (interactive "r")
+  (let* ((text (buffer-substring-no-properties start end))
+         (prompt (read-string "Ask AI: "))
+         (insert-point (save-excursion (goto-char end) (end-of-line) (point))))
     (gptel-request
-     prompt
+     (format "Given the following code/text:\n\n%s\n\nUser question: %s\n\nIMPORTANT: Provide an explanation only. Do NOT rewrite or modify the code. Respond in plain text." text prompt)
      :callback
      (lambda (response _info)
        (when response
