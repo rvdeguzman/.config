@@ -1,7 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; theme
-(setq doom-theme 'doom-dark-funeral)
+(setq doom-theme 'miasma)
 
 (setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
 (setq display-line-numbers-type 'relative)
@@ -106,6 +106,9 @@
   (add-to-list 'org-modules 'org-habit t)
   (setq org-habit-graph-column 60)
 
+  ;; inline images
+  (setq org-startup-with-inline-images t)
+
   ;; latex preview
   (setq org-startup-with-latex-preview t)
   (setq org-preview-latex-default-process 'dvisvgm)
@@ -121,6 +124,7 @@
         org-download-image-dir "./images"
         org-download-heading-lvl nil
         org-download-timestamp "_%Y%m%d_%H%M%S"
+        org-download-link-format "[[file:%s]]\n"
         org-download-annotate-function (lambda (_link) "")
         org-download-screenshot-method (if (eq system-type 'darwin)
                                            "screencapture -i %s"
@@ -145,6 +149,10 @@
       :n "C-k" #'evil-window-up
       :n "C-l" #'evil-window-right)
 
+(after! org
+  (map! :map org-mode-map
+        :n "C-j" #'evil-window-down))
+
 (map! :leader
       :prefix "w"
       "h" #'evil-window-split
@@ -155,15 +163,36 @@
 
 (use-package! gptel
   :config
-  (setq gptel-model 'claude-haiku-4-5-20251001
-        gptel-backend (gptel-make-anthropic "Claude"
-                        :stream t
-                        :key my/anthropic-api-key)
+  (gptel-make-anthropic "Claude"
+    :stream t
+    :key my/anthropic-api-key)
+
+  (setq gptel-model 'private-gpt
+        gptel-backend (gptel-make-openai "PrivateGPT"
+                        :stream nil
+                        :protocol "http"
+                        :host "localhost:8001"
+                        :models '(private-gpt)
+                        :key ""
+                        :request-params '(:use_context t))
         gptel-default-mode 'org-mode)
 
   ;; default system prompt for all requests
   (setq gptel--system-message
         "You are a concise teaching assistant. Explain concepts clearly with examples when helpful. Keep responses brief and focused. Use plain text, not markdown."))
+
+(defun my/ai-ask-docs (question)
+  "Ask PrivateGPT a question about ingested documents."
+  (interactive "sAsk your docs: ")
+  (gptel-request question
+   :callback
+   (lambda (response _info)
+     (when response
+       (with-current-buffer (get-buffer-create "*PrivateGPT*")
+         (goto-char (point-max))
+         (insert "\n** Q: " question "\n" response "\n")
+         (org-mode)
+         (pop-to-buffer (current-buffer)))))))
 
 (defun my/ai-explain-region (start end)
   "Send selected region to LLM for explanation, insert response in a collapsible drawer."
@@ -198,4 +227,5 @@
       :prefix ("A" . "ai")
       :desc "Ask AI" "a" #'my/ai-ask
       :desc "Explain region" "e" #'my/ai-explain-region
-      :desc "Open gptel chat" "c" #'gptel)
+      :desc "Open gptel chat" "c" #'gptel
+      :desc "Ask docs (RAG)" "d" #'my/ai-ask-docs)
