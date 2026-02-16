@@ -129,10 +129,11 @@
                                            "screencapture -i %s"
                                          "grimblast save area %s"))
   (defun my/org-download-clipboard (&optional basename)
-    "Paste clipboard image without creating a properties drawer."
+    "Paste clipboard image without creating a properties drawer or extra newlines."
     (interactive)
-    (cl-letf (((symbol-function 'org-id-get-create) #'ignore))
-      (org-download-clipboard basename)))
+    (let ((org-download-link-format "[[file:.images/%s]]"))
+      (cl-letf (((symbol-function 'org-id-get-create) #'ignore))
+        (org-download-clipboard basename))))
   (map! :map org-mode-map "C-c i v" #'my/org-download-clipboard))
 (defun org-roam-capture-here ()
   "new org roam node in pwd"
