@@ -118,8 +118,6 @@
 
 (use-package! org-download
   :after org
-  :bind (:map org-mode-map
-         ("C-c i v" . org-download-clipboard))
   :config
   (setq org-download-method 'directory
         org-download-image-dir "./.images"
