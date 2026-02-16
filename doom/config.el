@@ -108,6 +108,7 @@
 
   ;; inline images
   (setq org-startup-with-inline-images t)
+  (add-hook 'org-mode-hook #'org-display-inline-images)
 
   ;; latex preview
   (setq org-startup-with-latex-preview t)
@@ -121,10 +122,10 @@
          ("C-c i v" . org-download-clipboard))
   :config
   (setq org-download-method 'directory
-        org-download-image-dir "./images"
+        org-download-image-dir "./.images"
         org-download-heading-lvl nil
         org-download-timestamp "_%Y%m%d_%H%M%S"
-        org-download-link-format "[[file:%s]]\n"
+        org-download-link-format "[[file:.images/%s]]\n"
         org-download-annotate-function (lambda (_link) "")
         org-download-screenshot-method (if (eq system-type 'darwin)
                                            "screencapture -i %s"
