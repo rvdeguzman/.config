@@ -119,9 +119,11 @@
 (use-package! org-download
   :after org
   :config
+  (kill-local-variable 'org-download-image-dir)
+  (kill-local-variable 'org-download-heading-lvl)
+  (setq-default org-download-image-dir "./.images")
+  (setq-default org-download-heading-lvl nil)
   (setq org-download-method 'directory
-        org-download-image-dir "./.images"
-        org-download-heading-lvl nil
         org-download-timestamp "_%Y%m%d_%H%M%S"
         org-download-link-format "[[file:.images/%s]]\n"
         org-download-annotate-function (lambda (_link) "")
@@ -131,7 +133,9 @@
   (defun my/org-download-clipboard (&optional basename)
     "Paste clipboard image without creating a properties drawer or extra newlines."
     (interactive)
-    (let ((org-download-link-format "[[file:.images/%s]]"))
+    (let ((org-download-link-format "[[file:.images/%s]]")
+          (org-download-heading-lvl nil)
+          (org-download-image-dir "./.images"))
       (cl-letf (((symbol-function 'org-id-get-create) #'ignore))
         (org-download-clipboard basename))))
   (map! :map org-mode-map "C-c i v" #'my/org-download-clipboard))
