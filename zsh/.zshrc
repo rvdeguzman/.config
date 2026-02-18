@@ -1,9 +1,13 @@
 export ZSH="$HOME/.oh-my-zsh"
 
+# Doom emacs path
+export PATH=$HOME/.config/emacs/bin:$PATH
 export PATH=$HOME/.local/bin/:$PATH
-export PATH=$HOME/.local/share/bob/nightly/bin:$PATH
-export PATH=$PATH:$HOME/bin/
+export PATH="$HOME/bin/:$PATH"
 
+export EDITOR=nvim
+
+# API Keys
 export ANTHROPIC_API_KEY=
 export GEMINI_API_KEY=
 export OPENAI_API_KEY=
@@ -18,25 +22,12 @@ alias t="tmux"
 alias y="yazi"
 alias vim="nvim"
 alias vi="nvim"
-alias mkvenv="python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt"
-alias venv="source venv/bin/activate"
-alias ogh=open-github
-alias rl=roamlink
-alias ls="eza"
-alias cd="z"
+alias ogh="open-github"
+alias mkvenv="python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt"
+alias venv="source .venv/bin/activate"
 
-f() {
-    local dir
-    dir="$(fd --type d | fzf)" && cd "$dir"
-}
+# alias school='cd /Users/rv/Library/Mobile\ Documents/com~apple~CloudDocs/school'
+# alias icloud='cd /Users/rv/Library/Mobile\ Documents/com~apple~CloudDocs'
 
-ff() {
-    local dir
-    dir="$(zoxide query -l | fzf)" && zoxide add "$dir" && cd "$dir"
-}
-
-eval "$(zoxide init zsh)"
-
-
-
-
+# ln -s /Users/rv/Library/Mobile\ Documents/com~apple~CloudDocs/school 
+# ln -s /Users/rv/Library/Mobile\ Documents/com~apple~CloudDocs/
