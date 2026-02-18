@@ -35,3 +35,5 @@ mouse-scroll-multiplier = 0.95
 
 # shader
 custom-shader = "shaders/cursor_tail.glsl"
+
+quit-after-last-window-closed = true
