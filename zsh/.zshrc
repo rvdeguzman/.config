@@ -29,5 +29,5 @@ alias venv="source .venv/bin/activate"
 # alias school='cd /Users/rv/Library/Mobile\ Documents/com~apple~CloudDocs/school'
 # alias icloud='cd /Users/rv/Library/Mobile\ Documents/com~apple~CloudDocs'
 
-# ln -s /Users/rv/Library/Mobile\ Documents/com~apple~CloudDocs/school 
-# ln -s /Users/rv/Library/Mobile\ Documents/com~apple~CloudDocs/
+# ln -s "/Users/rv/Library/Mobile\ Documents/com~apple~CloudDocs/school ~/school"
+# ln -s "/Users/rv/Library/Mobile\ Documents/com~apple~CloudDocs/ ~/icloud"
