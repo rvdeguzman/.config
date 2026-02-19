@@ -3,6 +3,8 @@
 ;; theme
 (setq doom-theme 'miasma)
 
+(setq-default tab-width 4)
+
 (setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
 (setq display-line-numbers-type 'relative)
 
@@ -181,7 +183,7 @@
         gptel-backend (gptel-make-openai "PrivateGPT"
                         :stream nil
                         :protocol "http"
-                        :host "localhost:8001"
+                        :host "shibuya:8001"
                         :models '(private-gpt)
                         :key ""
                         :request-params '(:use_context t))
