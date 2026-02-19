@@ -5,7 +5,9 @@ config-file = ?"~/.config/ghostty/miasma.conf"
 font-family = "Iosevka Nerd Font"
 font-style = Regular
 font-size = 16
-font-feature = -calt -liga -dlig
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
 
 # Window
 window-theme = ghostty
@@ -17,7 +19,7 @@ gtk-toolbar-style = flat
 
 # Cursor styling
 cursor-style = "block"
-cursor-style-blink = false
+cursor-style-blink = true
 
 # Cursor styling + SSH session terminfo
 # (all shell integration options must be passed together)

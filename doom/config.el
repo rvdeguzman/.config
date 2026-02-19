@@ -109,11 +109,11 @@
   (setq org-habit-graph-column 60)
 
   ;; inline images
-  (setq org-startup-with-inline-images t)
+  ;; (setq org-startup-with-inline-images t)
   (add-hook 'org-mode-hook #'org-display-inline-images)
 
   ;; latex preview
-  (setq org-startup-with-latex-preview t)
+  ;; (setq org-startup-with-latex-preview t)
   (setq org-preview-latex-default-process 'dvisvgm)
   (setq org-format-latex-options
         (plist-put org-format-latex-options :background "Transparent")))
