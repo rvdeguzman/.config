@@ -45,13 +45,12 @@
 ** Notes\n\n\n\
 ** Questions\n\
 - \n\n\
-** Action Items\n\
-- [ ] \n"
+"
          :if-new (file+head "lectures/%<%Y-%m-%d>-${slug}.org"
                             "#+title: ${title}\n#+filetags: :lecture:\n")
          :immediate-finish t :unnarrowed t)
         ("o" "Concept" plain
-         "* Summary\n%?\n\n* Key Points\n- \n\n* Related\n"
+         "* Notes\n%?\n\n* Summary\n\n\n* Definition\n\n* Key Points\n- \n\n* Related\n"
          :if-new (file+head "concepts/${slug}.org"
                             "#+title: ${title}\n#+filetags: :concept:\n")
          :immediate-finish t :unnarrowed t)
