@@ -19,7 +19,7 @@ gtk-toolbar-style = flat
 
 # Cursor styling
 cursor-style = "block"
-cursor-style-blink = true
+cursor-style-blink = false
 
 # Cursor styling + SSH session terminfo
 # (all shell integration options must be passed together)
@@ -37,6 +37,6 @@ keybind = super+control+shift+alt+arrow_right=resize_split:right,100
 mouse-scroll-multiplier = 0.95
 
 # shader
-custom-shader = "shaders/cursor_tail.glsl"
+# custom-shader = "shaders/cursor_tail.glsl"
 
 quit-after-last-window-closed = true
