@@ -93,3 +93,18 @@ enter = 'mode main'
 # [[on-window-detected]]
 # check-further-callbacks = true
 # run = 'layout floating'
+
+
+[workspace-to-monitor-force-assignment]
+1 = 'Studio Display'
+2 = 'Studio Display'
+3 = 'Studio Display'
+4 = 'Studio Display'
+5 = 'Studio Display'
+
+6 = 'Color LCD'
+7 = 'Color LCD'
+8 = 'Color LCD'
+9 = 'Color LCD'
+10 = 'Color LCD'
+

@@ -97,6 +97,7 @@
   ;; agenda — targeted directories only
   (setq org-agenda-files
         (append (list (expand-file-name "habits.org" org-directory)
+                      (expand-file-name "inbox.org" org-directory)
                       (expand-file-name "journal/" org-directory)
                       (expand-file-name "roam/projects/" org-directory))
                 (directory-files-recursively
