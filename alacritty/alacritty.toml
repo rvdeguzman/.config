@@ -120,17 +120,12 @@ args = ["--login"]
 program = "/bin/zsh"
 
 [window]
-decorations = "None"
-dynamic_padding = true
-opacity = 0.86
 startup_mode = "Maximized"
 title = "alacritty"
-blur = true
-dynamic_title = false
 
 [window.padding]
-x = 5
-y = 5
+x = 12
+y = 4
 
 [general]
 live_config_reload = true

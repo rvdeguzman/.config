@@ -1,7 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; theme
-(setq doom-theme 'miasma)
+(setq doom-theme 'doom-gruvbox)
 
 (setq-default tab-width 4)
 
