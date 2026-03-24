@@ -7,6 +7,11 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "show_wrap_guides": true,
+  "wrap_guides": [80],
+  "scrollbar": {
+    "show": "never",
+  },
   "context_servers": {
     "mcp-server-context7": {
       "enabled": true,
@@ -32,7 +37,7 @@
     "toggle_relative_line_numbers": true,
   },
   "toolbar": {
-    "code_actions": true,
+    "code_actions": false,
   },
   "relative_line_numbers": "enabled",
   "show_signature_help_after_edits": false,
