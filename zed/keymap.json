@@ -13,7 +13,32 @@
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w j": "workspace::ActivatePaneDown",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w l": "workspace::ActivatePaneRight",
       "ctrl-g": "git_panel::ToggleFocus",
+      "cmd-h": "workspace::ToggleLeftDock",
+      "cmd-j": "workspace::ToggleBottomDock",
+      "cmd-k": "workspace::NewCenterTerminal",
+      "cmd-l": "workspace::ToggleRightDock",
+      "ctrl-z": "workspace::ToggleCenteredLayout",
+    },
+  },
+  {
+    "context": "Picker",
+    "bindings": {
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious",
+    },
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-h": null,
+      "ctrl-j": null,
+      "ctrl-k": null,
+      "ctrl-l": null,
     },
   },
   {

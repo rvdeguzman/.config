@@ -7,8 +7,17 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "context_servers": {
+    "mcp-server-context7": {
+      "enabled": true,
+      "remote": false,
+      "settings": {
+        "context7_api_key": "ctx7sk-d64d559d-4bad-42d4-b582-74dfc403ec93"
+      }
+    }
+  },
   "hover_popover_delay": 500,
-  "icon_theme": "Colored Zed Icons Theme Dark",
+  "icon_theme": "VSCode Icons for Zed (Dark)",
   "project_panel": {
     "dock": "right",
   },
@@ -84,6 +93,6 @@
   "theme": {
     "mode": "system",
     "light": "Gruvbox Light",
-    "dark": "Zedwaita Dark",
+    "dark": "Gruvbox Dark Hard",
   },
 }
