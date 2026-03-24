@@ -18,8 +18,8 @@ preset = 'qwerty'
 
 [mode.main.binding]
 alt-r = 'mode resize'
-# alt-enter = "exec-and-forget /Applications/Ghostty.app/Contents/MacOS/ghostty"
-alt-enter = "exec-and-forget /Applications/Alacritty.app/Contents/MacOS/alacritty"
+alt-enter = "exec-and-forget /Applications/Ghostty.app/Contents/MacOS/ghostty"
+# alt-enter = "exec-and-forget /Applications/Alacritty.app/Contents/MacOS/alacritty"
 
 alt-h = 'focus left'
 alt-j = 'focus down'
@@ -90,10 +90,10 @@ right = 'resize width +50'
 esc = 'mode main'
 enter = 'mode main'
 
-# # float all windows
-# [[on-window-detected]]
-# check-further-callbacks = true
-# run = 'layout floating'
+# float all windows
+[[on-window-detected]]
+check-further-callbacks = true
+run = 'layout floating'
 
 
 [workspace-to-monitor-force-assignment]

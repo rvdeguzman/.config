@@ -4,21 +4,16 @@
 
 SESSION="$(tmux new-session -d -n "main" -P -F '#{session_id}')"
 
-# Window 1: 80/20 left-right split
-tmux split-window -h -t "$SESSION" -l 15%
-
 # Window 2: 1 left, 2 right stacked
 tmux new-window -t "$SESSION" -n "split"
-tmux split-window -h -t "$SESSION" -l 15%
+tmux split-window -h -t "$SESSION"
 tmux split-window -v -t "$SESSION"
 
-# Window 3: 4 panes in quadrants
-tmux new-window -t "$SESSION" -n "quad"
-tmux split-window -h -t "$SESSION"
-tmux select-pane -t "$SESSION" -L
-tmux split-window -v -t "$SESSION"
-tmux select-pane -t "$SESSION" -R
-tmux split-window -v -t "$SESSION"
+  tmux send-keys -t "$SESSION:1.0" 'nvim' Enter
+
+  # Window 2
+  tmux send-keys -t "$SESSION:2.0" 'claude' Enter
+  tmux send-keys -t "$SESSION:2.2" 'lazygit' Enter
 
 # Focus window 1, left pane
 tmux select-window -t "$SESSION:1"
