@@ -58,9 +58,6 @@ alt-s = 'layout accordion vertical'        # stack
 alt-w = 'layout accordion horizontal'      # tab
 alt-e = 'layout tiles horizontal vertical'
 
-alt-tab = 'workspace-back-and-forth'
-alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
-
 alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
@@ -95,6 +92,18 @@ enter = 'mode main'
 check-further-callbacks = true
 run = 'layout floating'
 
+# select windows to tile
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = 'layout tiling'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari'
+run = 'layout tiling'
+
+[[on-window-detected]]
+if.app-id = 'dev.zed.Zed'
+run = 'layout tiling'
 
 [workspace-to-monitor-force-assignment]
 1 = 'Studio Display'

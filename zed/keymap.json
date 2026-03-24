@@ -13,6 +13,7 @@
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-g": "git_panel::ToggleFocus",
     },
   },
   {
@@ -25,6 +26,7 @@
       // <leader><leader> → find files
       "space space": "file_finder::Toggle",
       "space a a": "agent::ToggleFocus",
+      "ctrl-a": "agent::ToggleFocus",
 
       // <leader>e → file explorer
       "space e": "project_panel::ToggleFocus",
@@ -32,7 +34,7 @@
       "space ,": "pane::DeploySearch",
 
       // <leader>ss / <leader>sf → document symbols
-      "space s s": "outline::Toggle",
+      "space s f": "outline::Toggle",
       // <leader>ws → workspace symbols
       "space w s": "project_symbols::Toggle",
 
