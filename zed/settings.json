@@ -11,10 +11,8 @@
     "mcp-server-context7": {
       "enabled": true,
       "remote": false,
-      "settings": {
-        "context7_api_key": "ctx7sk-d64d559d-4bad-42d4-b582-74dfc403ec93"
-      }
-    }
+      "settings": {},
+    },
   },
   "hover_popover_delay": 500,
   "icon_theme": "VSCode Icons for Zed (Dark)",
@@ -27,7 +25,7 @@
     "show_branch_icon": true,
   },
   "inlay_hints": {
-    "enabled": true,
+    "enabled": false,
   },
   "vim": {
     "use_smartcase_find": true,
@@ -58,16 +56,29 @@
     "calt": false,
   },
   "agent": {
+    "show_turn_stats": true,
+    "enable_feedback": false,
+    "tool_permissions": {
+      "default": "allow",
+      "tools": {},
+    },
     "default_profile": "ask",
     "default_model": {
-      "provider": "anthropic",
-      "model": "claude-sonnet-4-6-latest",
-      "enable_thinking": false,
+      "provider": "openrouter",
+      "model": "moonshotai/kimi-k2.5",
+      "enable_thinking": true,
     },
     "favorite_models": [],
     "model_parameters": [],
   },
   "agent_servers": {
+    "opencode": {
+      "type": "registry",
+      "favorite_models": ["opencode/kimi-k2.5"],
+    },
+    "gemini": {
+      "type": "registry",
+    },
     "cursor": {
       "type": "registry",
     },
@@ -93,6 +104,6 @@
   "theme": {
     "mode": "system",
     "light": "Gruvbox Light",
-    "dark": "Gruvbox Dark Hard",
+    "dark": "Zed Legacy: Rosé Pine",
   },
 }
