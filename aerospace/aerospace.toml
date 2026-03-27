@@ -56,7 +56,6 @@ alt-shift-0 = 'move-node-to-workspace 10'
 alt-space = 'layout floating tiling'
 alt-s = 'layout accordion vertical'        # stack
 alt-w = 'layout accordion horizontal'      # tab
-alt-e = 'layout tiles horizontal vertical'
 
 alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'

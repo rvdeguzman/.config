@@ -24,7 +24,8 @@
       "cmd-l": "workspace::ToggleRightDock",
       "ctrl-z": "workspace::ToggleCenteredLayout",
       "cmd-e": "project_panel::ToggleFocus",
-      "ctrl-a": "agent::ToggleFocus",
+      "cmd-?": "agent::ToggleFocus",
+      "cmd-shift-o": "projects::OpenRecent",
     },
   },
   {
@@ -32,6 +33,8 @@
     "bindings": {
       "cmd-;": "agent::ToggleModelSelector",
       "cmd-:": "agent::ToggleProfileSelector",
+      "z j": "editor::ToggleFold",
+      "z k": "editor::UnfoldAll",
     },
   },
   {

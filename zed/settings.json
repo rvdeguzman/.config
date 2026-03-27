@@ -7,6 +7,31 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "ui_font_family": "Iosevka Nerd Font Mono",
+  "tab_bar": {
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": false,
+    "show": true,
+  },
+  "search": {
+    "button": false,
+  },
+  "diagnostics": {
+    "button": true,
+  },
+  "terminal": {
+    "toolbar": {
+      "breadcrumbs": true,
+    },
+    "button": false,
+  },
+  "status_bar": {
+    "cursor_position_button": true,
+    "active_language_button": true,
+  },
+  "collaboration_panel": {
+    "button": false,
+  },
   "show_wrap_guides": true,
   "wrap_guides": [80],
   "scrollbar": {
@@ -20,12 +45,18 @@
     },
   },
   "hover_popover_delay": 500,
-  "icon_theme": "VSCode Icons for Zed (Dark)",
+  "icon_theme": {
+    "mode": "dark",
+    "light": "VSCode Icons for Zed (Dark)",
+    "dark": "VSCode Icons for Zed (Dark)"
+  },
   "project_panel": {
+    "button": false,
     "dock": "right",
   },
   "use_system_window_tabs": true,
   "title_bar": {
+    "show_user_picture": false,
     "show_menus": true,
     "show_branch_icon": true,
   },
@@ -37,16 +68,17 @@
     "toggle_relative_line_numbers": true,
   },
   "toolbar": {
+    "breadcrumbs": true,
     "code_actions": false,
   },
   "relative_line_numbers": "enabled",
   "show_signature_help_after_edits": false,
   "sticky_scroll": {
-    "enabled": true,
+    "enabled": false,
   },
   "auto_signature_help": false,
   "which_key": {
-    "enabled": true,
+    "enabled": false,
   },
   "rounded_selection": true,
   "preview_tabs": {
@@ -56,24 +88,37 @@
     "git_status": true,
     "file_icons": true,
   },
-  "buffer_font_family": ".ZedMono",
+  "buffer_font_family": "Iosevka Nerd Font Mono",
   "buffer_font_features": {
     "calt": false,
   },
   "agent": {
+    "single_file_review": false,
     "show_turn_stats": true,
     "enable_feedback": false,
     "tool_permissions": {
       "default": "allow",
       "tools": {},
     },
-    "default_profile": "ask",
+    "default_profile": "write",
     "default_model": {
-      "provider": "openrouter",
-      "model": "moonshotai/kimi-k2.5",
+      "effort": "medium",
+      "provider": "zed.dev",
+      "model": "gpt-5.4",
       "enable_thinking": true,
     },
-    "favorite_models": [],
+    "favorite_models": [
+      {
+        "provider": "zed.dev",
+        "model": "claude-sonnet-4-6",
+        "enable_thinking": false
+      },
+      {
+        "provider": "zed.dev",
+        "model": "gpt-5.4",
+        "enable_thinking": false
+      }
+    ],
     "model_parameters": [],
   },
   "agent_servers": {
@@ -94,6 +139,11 @@
       "type": "registry",
     },
     "codex-acp": {
+      "favorite_config_option_values": {
+        "mode": [
+          "full-access"
+        ]
+      },
       "type": "registry",
     },
     "claude-acp": {
@@ -107,8 +157,8 @@
   "ui_font_size": 16,
   "buffer_font_size": 16.0,
   "theme": {
-    "mode": "system",
+    "mode": "dark",
     "light": "Gruvbox Light",
-    "dark": "Zed Legacy: Rosé Pine",
+    "dark": "Ars Goetia - Kimaris",
   },
 }
