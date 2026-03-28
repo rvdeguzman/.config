@@ -85,10 +85,10 @@
   {
     "context": "Terminal",
     "bindings": {
-      "ctrl-h": null,
-      "ctrl-j": null,
-      "ctrl-k": null,
-      "ctrl-l": null,
+      // "ctrl-h": null,
+      // "ctrl-j": null,
+      // "ctrl-k": null,
+      // "ctrl-l": null,
     },
   },
   {

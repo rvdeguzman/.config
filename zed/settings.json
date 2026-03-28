@@ -102,9 +102,9 @@
     },
     "default_profile": "write",
     "default_model": {
-      "effort": "medium",
+      "effort": "high",
       "provider": "zed.dev",
-      "model": "gpt-5.4",
+      "model": "claude-sonnet-4-6",
       "enable_thinking": true,
     },
     "favorite_models": [
