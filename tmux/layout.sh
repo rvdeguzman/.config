@@ -5,7 +5,7 @@
 SESSION="$(tmux new-session -d -n "main" -P -F '#{session_id}')"
 
 tmux new-window -t "$SESSION" -n "agents"
-tmux split-window -v -t "$SESSION"
+tmux split-window -h -t "$SESSION"
 
 tmux send-keys -t "$SESSION:1.0" 'nvim' Enter
 
