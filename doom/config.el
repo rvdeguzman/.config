@@ -2,8 +2,8 @@
 
 ;; theme
 (setq doom-theme 'doom-gruvbox)
-(set-frame-parameter nil 'alpha-background 90)
-(add-to-list 'default-frame-alist '(alpha-background . 90))
+(set-frame-parameter nil 'alpha '(95 . 95))
+(add-to-list 'default-frame-alist '(alpha . (95 . 95)))
 
 (setq-default tab-width 4)
 
@@ -88,11 +88,11 @@
 (use-package! org-roam
   :custom
   (org-roam-directory (file-truename "~/org/roam"))
-   :bind (("C-c n l" . org-roam-buffer-toggle)
-          ("C-c n f" . org-roam-node-find)
-          ("C-c n g" . org-roam-graph)
-          ("C-c n i" . org-roam-node-insert)
-          ("C-c n c" . org-roam-capture))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture))
   :config
   (setq org-roam-node-display-template
         (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
@@ -232,13 +232,13 @@
   (let ((text (buffer-substring-no-properties start end))
         (insert-point (save-excursion (goto-char end) (end-of-line) (point))))
     (gptel-request
-     (format "Explain the following concisely:\n\n%s" text)
-     :callback
-     (lambda (response _info)
-       (when response
-         (save-excursion
-           (goto-char insert-point)
-           (insert "\n:AI_EXPLAIN:\n" response "\n:END:\n")))))))
+        (format "Explain the following concisely:\n\n%s" text)
+      :callback
+      (lambda (response _info)
+        (when response
+          (save-excursion
+            (goto-char insert-point)
+            (insert "\n:AI_EXPLAIN:\n" response "\n:END:\n")))))))
 
 (defun my/ai-ask (start end)
   "Ask AI a question about the selected region. Response goes in a collapsible drawer."
@@ -247,13 +247,13 @@
          (prompt (read-string "Ask AI: "))
          (insert-point (save-excursion (goto-char end) (end-of-line) (point))))
     (gptel-request
-     (format "Given the following code/text:\n\n%s\n\nUser question: %s\n\nIMPORTANT: Provide an explanation only. Do NOT rewrite or modify the code. Respond in plain text." text prompt)
-     :callback
-     (lambda (response _info)
-       (when response
-         (save-excursion
-           (goto-char insert-point)
-           (insert "\n:AI_EXPLAIN:\n" response "\n:END:\n")))))))
+        (format "Given the following code/text:\n\n%s\n\nUser question: %s\n\nIMPORTANT: Provide an explanation only. Do NOT rewrite or modify the code. Respond in plain text." text prompt)
+      :callback
+      (lambda (response _info)
+        (when response
+          (save-excursion
+            (goto-char insert-point)
+            (insert "\n:AI_EXPLAIN:\n" response "\n:END:\n")))))))
 
 (map! :leader
       :prefix ("A" . "ai")
