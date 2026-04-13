@@ -2,6 +2,8 @@
 
 ;; theme
 (setq doom-theme 'doom-gruvbox)
+(set-frame-parameter nil 'alpha-background 90)
+(add-to-list 'default-frame-alist '(alpha-background . 90))
 
 (setq-default tab-width 4)
 
@@ -13,6 +15,11 @@
 
 (setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
 (setq display-line-numbers-type 'relative)
+(after! neotree
+  (setq neo-window-position 'right))
+
+(after! corfu
+  (setq corfu-auto-delay 0))
 
 (setq org-directory "~/org")
 
@@ -167,7 +174,13 @@
   :config
   (map! :leader
         :desc "Open LeetCode"
-        "o l" #'leetcode))
+        "o l" #'leetcode)
+  (after! doom-dashboard
+    (add-to-list '+doom-dashboard-menu-sections
+                 '("Open LeetCode"
+                   :icon (nerd-icons-octicon "nf-oct-code" :face 'doom-dashboard-menu-title)
+                   :action leetcode)
+                 t)))
 
 (defun org-roam-capture-here ()
   "new org roam node in pwd"
@@ -279,6 +292,21 @@
       :desc "Workspace symbols" "w s" #'consult-imenu-multi)
 
 (after! evil-easymotion
-  (map! :nxo "f" #'evil-avy-goto-char-timer
-        :nxo "F" #'evil-avy-goto-char-2
+  (map! :n "f" #'evil-avy-goto-char-timer
+        :v "f" #'evil-avy-goto-char-timer
+        :o "f" #'evil-avy-goto-char-timer
+        :n "F" #'evil-avy-goto-char-2
+        :v "F" #'evil-avy-goto-char-2
+        :o "F" #'evil-avy-goto-char-2
         :o "r" #'evil-avy-goto-char-timer))
+
+(map! :g "C-1" #'+workspace/switch-to-0
+      :g "C-2" #'+workspace/switch-to-1
+      :g "C-3" #'+workspace/switch-to-2
+      :g "C-4" #'+workspace/switch-to-3
+      :g "C-5" #'+workspace/switch-to-4
+      :g "C-6" #'+workspace/switch-to-5
+      :g "C-7" #'+workspace/switch-to-6
+      :g "C-8" #'+workspace/switch-to-7
+      :g "C-9" #'+workspace/switch-to-8
+      :g "C-0" #'+workspace/switch-to-final)
