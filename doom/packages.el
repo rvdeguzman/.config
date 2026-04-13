@@ -13,3 +13,6 @@
 
 (package! kitty-graphics
   :recipe (:host github :repo "cashmeredev/kitty-graphics.el"))
+
+(package! leetcode
+  :recipe (:host github :repo "kaiwk/leetcode.el"))

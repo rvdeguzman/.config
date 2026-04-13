@@ -5,6 +5,12 @@
 
 (setq-default tab-width 4)
 
+(let ((local-bin (expand-file-name "~/.local/bin")))
+  (when (file-directory-p local-bin)
+    (add-to-list 'exec-path local-bin)
+    (unless (member local-bin (parse-colon-path (or (getenv "PATH") "")))
+      (setenv "PATH" (concat local-bin path-separator (or (getenv "PATH") ""))))))
+
 (setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
 (setq display-line-numbers-type 'relative)
 
@@ -151,6 +157,17 @@
                (getenv "GHOSTTY_BIN_DIR")))
   :config
   (kitty-graphics-mode 1))
+
+(use-package! leetcode
+  :commands (leetcode)
+  :init
+  (setq leetcode-prefer-language "python3"
+        leetcode-save-solutions t
+        leetcode-directory (expand-file-name "~/leetcode/"))
+  :config
+  (map! :leader
+        :desc "Open LeetCode"
+        "o l" #'leetcode))
 
 (defun org-roam-capture-here ()
   "new org roam node in pwd"
