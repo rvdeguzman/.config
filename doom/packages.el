@@ -10,3 +10,6 @@
 (package! org-download)
 
 (package! gptel)
+
+(package! kitty-graphics
+  :recipe (:host github :repo "cashmeredev/kitty-graphics.el"))

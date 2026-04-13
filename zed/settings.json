@@ -7,6 +7,23 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        }
+      },
+      "enable_lsp_tasks": true
+    }
+  },
   "ui_font_family": "Iosevka Nerd Font Mono",
   "tab_bar": {
     "show_nav_history_buttons": false,
@@ -102,20 +119,20 @@
     },
     "default_profile": "write",
     "default_model": {
-      "effort": "high",
+      "effort": "medium",
       "provider": "zed.dev",
-      "model": "claude-sonnet-4-6",
+      "model": "gpt-5.4",
       "enable_thinking": true,
     },
     "favorite_models": [
       {
         "provider": "zed.dev",
-        "model": "claude-sonnet-4-6",
+        "model": "gpt-5.4",
         "enable_thinking": false
       },
       {
         "provider": "zed.dev",
-        "model": "gpt-5.4",
+        "model": "claude-sonnet-4-6",
         "enable_thinking": false
       }
     ],

@@ -53,7 +53,7 @@ alt-shift-8 = 'move-node-to-workspace --focus-follows-window 8'
 alt-shift-9 = 'move-node-to-workspace --focus-follows-window 9'
 alt-shift-0 = 'move-node-to-workspace --focus-follows-window 10'
 
-alt-f = 'layout floating tiling'
+alt-space = 'layout floating tiling'
 alt-s = 'layout accordion vertical'        # stack
 alt-w = 'layout accordion horizontal'      # tab
 

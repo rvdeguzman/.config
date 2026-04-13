@@ -139,6 +139,7 @@
       "space f": "editor::Format",
 
       // Diagnostics: [d / ]d
+      "ctrl-w ctrl-d": "editor::Hover",
       "[d": "editor::GoToDiagnostic",
       "]d": "editor::GoToPreviousDiagnostic",
       "space d": "editor::ToggleInlineDiagnostics",

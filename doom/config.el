@@ -143,6 +143,15 @@
       (cl-letf (((symbol-function 'org-id-get-create) #'ignore))
         (org-download-clipboard basename))))
   (map! :map org-mode-map "C-c i v" #'my/org-download-clipboard))
+
+(use-package! kitty-graphics
+  :if (and (not (display-graphic-p))
+           (or (getenv "KITTY_PID")
+               (getenv "WEZTERM_EXECUTABLE")
+               (getenv "GHOSTTY_BIN_DIR")))
+  :config
+  (kitty-graphics-mode 1))
+
 (defun org-roam-capture-here ()
   "new org roam node in pwd"
   (interactive)
