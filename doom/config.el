@@ -207,32 +207,11 @@
     :stream t
     :key my/anthropic-api-key)
 
-  (setq gptel-model 'private-gpt
-        gptel-backend (gptel-make-openai "PrivateGPT"
-                        :stream nil
-                        :protocol "http"
-                        :host "shibuya:8001"
-                        :models '(private-gpt)
-                        :key ""
-                        :request-params '(:use_context t))
-        gptel-default-mode 'org-mode)
+  (setq gptel-default-mode 'org-mode)
 
   ;; default system prompt for all requests
   (setq gptel--system-message
         "You are a concise teaching assistant. Explain concepts clearly with examples when helpful. Keep responses brief and focused. Use plain text, not markdown."))
-
-(defun my/ai-ask-docs (question)
-  "Ask PrivateGPT a question about ingested documents."
-  (interactive "sAsk your docs: ")
-  (gptel-request question
-   :callback
-   (lambda (response _info)
-     (when response
-       (with-current-buffer (get-buffer-create "*PrivateGPT*")
-         (goto-char (point-max))
-         (insert "\n** Q: " question "\n" response "\n")
-         (org-mode)
-         (pop-to-buffer (current-buffer)))))))
 
 (defun my/ai-explain-region (start end)
   "Send selected region to LLM for explanation, insert response in a collapsible drawer."
@@ -267,5 +246,39 @@
       :prefix ("A" . "ai")
       :desc "Ask AI" "a" #'my/ai-ask
       :desc "Explain region" "e" #'my/ai-explain-region
-      :desc "Open gptel chat" "c" #'gptel
-      :desc "Ask docs (RAG)" "d" #'my/ai-ask-docs)
+      :desc "Open gptel chat" "c" #'gptel)
+
+;; Neovim muscle-memory migration
+;;
+;; These bindings preserve the parts of the ~/.config/nvim workflow that have
+;; clean Doom equivalents: project search, recent files, sidebar, symbol search,
+;; and flash-style jumps.
+(map! :n "C-q" #'save-buffers-kill-terminal
+      :n "gO" #'consult-imenu
+      :n "gW" #'consult-imenu-multi
+      :n "gr" #'+lookup/references
+      :n "gi" #'+lookup/implementations
+      :n "[d" #'flycheck-previous-error
+      :n "]d" #'flycheck-next-error
+      :leader
+      :desc "Project search" "," #'+default/search-project
+      :desc "Recent project files" "." #'projectile-recentf
+      :desc "Search current buffer" "/" #'+default/search-buffer
+      :desc "Project sidebar" "e" #'+neotree/open
+      :desc "Close window" "w d" #'delete-window
+      :desc "Search help docs" "s h" #'info-apropos
+      :desc "Search keybindings" "s k" #'helpful-key
+      :desc "Document symbols" "s s" #'consult-imenu
+      :desc "Syntax/tree symbols" "s t" #'consult-imenu
+      :desc "Search symbol at point in project" "s w" #'+default/search-project-for-symbol-at-point
+      :desc "Search project by grep" "s g" #'+default/search-project
+      :desc "Search diagnostics" "s d" #'+default/diagnostics
+      :desc "Resume minibuffer search" "s r" #'vertico-repeat
+      :desc "Search commands" "s c" #'execute-extended-command
+      :desc "Open Doom config" "s n" #'doom/find-file-in-private-config
+      :desc "Workspace symbols" "w s" #'consult-imenu-multi)
+
+(after! evil-easymotion
+  (map! :nxo "f" #'evil-avy-goto-char-timer
+        :nxo "F" #'evil-avy-goto-char-2
+        :o "r" #'evil-avy-goto-char-timer))
