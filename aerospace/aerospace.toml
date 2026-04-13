@@ -1,4 +1,5 @@
 start-at-login = true
+after-startup-command = ['exec-and-forget /Users/rv/.config/aerospace/sort-apps.sh']
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
@@ -66,6 +67,7 @@ alt-shift-c = 'reload-config'
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main']
+s = ['exec-and-forget /Users/rv/.config/aerospace/sort-apps.sh', 'mode main']
 f = ['layout floating tiling', 'mode main']
 
 alt-shift-h = ['join-with left', 'mode main']
@@ -94,15 +96,75 @@ run = 'layout floating'
 # select windows to tile
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = 'layout tiling'
+run = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
-run = 'layout tiling'
+run = ['layout tiling', 'move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-id = 'dev.zed.Zed'
-run = 'layout tiling'
+run = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+if.app-id = 'org.gnu.Emacs'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+run = ['layout tiling', 'move-node-to-workspace 3']
+
+[[on-window-detected]]
+if.app-id = 'org.chromium.Chromium'
+run = ['layout tiling', 'move-node-to-workspace 3']
+
+[[on-window-detected]]
+if.app-id = 'company.thebrowser.Browser'
+run = ['layout tiling', 'move-node-to-workspace 3']
+
+[[on-window-detected]]
+if.app-id = 'org.mozilla.firefox'
+run = ['layout tiling', 'move-node-to-workspace 3']
+
+[[on-window-detected]]
+if.app-id = 'com.brave.Browser'
+run = ['layout tiling', 'move-node-to-workspace 3']
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.edgemac'
+run = ['layout tiling', 'move-node-to-workspace 3']
+
+[[on-window-detected]]
+if.app-id = 'com.openai.chat'
+run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+if.app-id = 'com.anthropic.claudefordesktop'
+run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = 'move-node-to-workspace 10'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams'
+run = 'move-node-to-workspace 10'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams2'
+run = 'move-node-to-workspace 10'
+
+[[on-window-detected]]
+if.app-id = 'us.zoom.xos'
+run = 'move-node-to-workspace 10'
+
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+run = 'move-node-to-workspace 10'
 
 [workspace-to-monitor-force-assignment]
 1 = 'Studio Display'
@@ -116,4 +178,3 @@ run = 'layout tiling'
 8 = 'Built-in Retina Display'
 9 = 'Built-in Retina Display'
 10 = 'Built-in Retina Display'
-
