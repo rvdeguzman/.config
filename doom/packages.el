@@ -15,8 +15,9 @@
 (package! kitty-graphics
   :recipe (:host github :repo "cashmeredev/kitty-graphics.el"))
 
-(package! leetcode
-  :recipe (:host github :repo "kaiwk/leetcode.el"))
+(package! aio)
+(package! log4e)
+(package! s)
 
 (package! flash
   :recipe (:host github :repo "Prgebish/flash"))

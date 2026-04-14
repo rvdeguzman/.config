@@ -189,23 +189,20 @@
   :config
   (kitty-graphics-mode 1))
 
+(add-load-path! "leetcode.el")
+
 (use-package! leetcode
+  :load-path "leetcode.el"
   :commands (leetcode)
   :init
   (setq leetcode-prefer-language "python3"
         leetcode-save-solutions t
-        leetcode-directory (expand-file-name "~/leetcode/"))
+        leetcode-directory (expand-file-name "~/leetcode/")
+        leetcode-cache-file (expand-file-name ".local/cache/leetcode-problems.cache" doom-user-dir))
   :config
   (map! :leader
         :desc "Open LeetCode"
         "o l" #'leetcode))
-
-(after! doom-dashboard
-  (add-to-list '+doom-dashboard-menu-sections
-               '("Open LeetCode"
-                 :icon (nerd-icons-octicon "nf-oct-code" :face 'doom-dashboard-menu-title)
-                 :action leetcode)
-               t))
 
 (defun org-roam-capture-here ()
   "new org roam node in pwd"
@@ -286,18 +283,14 @@
   (evil-global-set-key 'normal (kbd "f") #'flash-evil-jump)
   (evil-global-set-key 'visual (kbd "f") #'flash-evil-jump)
   (evil-global-set-key 'motion (kbd "f") #'flash-evil-jump)
-  (evil-global-set-key 'operator (kbd "f") #'flash-evil-jump)
-  (evil-global-set-key 'normal (kbd "F") #'flash-treesitter)
-  (evil-global-set-key 'visual (kbd "F") #'flash-treesitter)
-  (evil-global-set-key 'operator (kbd "r") #'flash-evil-jump))
+  (evil-global-set-key 'operator (kbd "f") #'flash-evil-jump))
 
 (after! leetcode
   ;; leetcode.el installs its own evil local maps, which override global flash
   ;; bindings in the problem list/detail buffers.
-  (evil-define-key 'normal leetcode--problems-mode-map (kbd "f") #'flash-evil-jump)
-  (evil-define-key 'normal leetcode--problems-mode-map (kbd "F") #'flash-treesitter)
-  (evil-define-key 'normal leetcode--problem-detail-mode-map (kbd "f") #'flash-evil-jump)
-  (evil-define-key 'normal leetcode--problem-detail-mode-map (kbd "F") #'flash-treesitter))
+  (define-key leetcode--problems-mode-map (kbd "f") #'flash-evil-jump)
+  (define-key leetcode--problem-detail-mode-map (kbd "f") #'flash-evil-jump))
+
 
 (map! :g "C-1" #'+workspace/switch-to-0
       :g "C-2" #'+workspace/switch-to-1

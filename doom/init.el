@@ -1,5 +1,16 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
+;; Disable the evil-collection LeetCode integration. The package defines its
+;; own Evil maps, and the collection module has been conflicting with the local
+;; fork's command loading.
+(setq +evil-collection-disabled-list
+      '(leetcode
+        anaconda-mode
+        company
+        elisp-mode
+        ert
+        lispy))
+
 ;; This file controls what Doom modules are enabled and what order they load
 ;; in. Remember to run 'doom sync' after modifying it!
 
