@@ -1,6 +1,7 @@
 (package! org-roam-ui
   :recipe (:host github :repo "org-roam/org-roam-ui" :files ("*.el" "out")))
 (package! websocket)
+(package! evil-easymotion :disable t)
 
 (unpin! org-roam)
 (unpin! websocket)
@@ -16,3 +17,6 @@
 
 (package! leetcode
   :recipe (:host github :repo "kaiwk/leetcode.el"))
+
+(package! flash
+  :recipe (:host github :repo "Prgebish/flash"))

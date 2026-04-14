@@ -15,6 +15,30 @@
 
 (setq doom-font (font-spec :family "Iosevka Nerd Font Mono" :size 16))
 (setq display-line-numbers-type 'relative)
+
+;; Use Emacs for simple reading-oriented sites. Keep heavy JS sites external.
+(setq browse-url-browser-function #'eww-browse-url)
+(setq browse-url-handlers
+      '(("https?://news\\.ycombinator\\.com" . eww-browse-url)
+        ("https?://\\(www\\.\\)?reddit\\.com" . eww-browse-url)
+        ("https?://old\\.reddit\\.com" . eww-browse-url)))
+
+(after! eww
+  (setq shr-width 100
+        shr-use-colors nil
+        shr-use-fonts nil
+        eww-search-prefix "https://duckduckgo.com/html/?q="))
+
+(defun my/open-hacker-news ()
+  "Open Hacker News in EWW."
+  (interactive)
+  (eww "https://news.ycombinator.com"))
+
+(defun my/open-reddit ()
+  "Open old Reddit in EWW for a simpler, more reliable UI."
+  (interactive)
+  (eww "https://old.reddit.com"))
+
 (after! neotree
   (setq neo-window-position 'right))
 
@@ -174,13 +198,14 @@
   :config
   (map! :leader
         :desc "Open LeetCode"
-        "o l" #'leetcode)
-  (after! doom-dashboard
-    (add-to-list '+doom-dashboard-menu-sections
-                 '("Open LeetCode"
-                   :icon (nerd-icons-octicon "nf-oct-code" :face 'doom-dashboard-menu-title)
-                   :action leetcode)
-                 t)))
+        "o l" #'leetcode))
+
+(after! doom-dashboard
+  (add-to-list '+doom-dashboard-menu-sections
+               '("Open LeetCode"
+                 :icon (nerd-icons-octicon "nf-oct-code" :face 'doom-dashboard-menu-title)
+                 :action leetcode)
+               t))
 
 (defun org-roam-capture-here ()
   "new org roam node in pwd"
@@ -211,55 +236,13 @@
       "h" #'evil-window-split
       "v" #'evil-window-vsplit)
 
+(map! :leader
+      (:prefix ("o" . "open")
+       :desc "Hacker News" "h" #'my/open-hacker-news
+       :desc "Reddit" "r" #'my/open-reddit))
+
 ;; gptel — LLM integration
 (load! "secrets.el" doom-user-dir t)
-
-(use-package! gptel
-  :config
-  (gptel-make-anthropic "Claude"
-    :stream t
-    :key my/anthropic-api-key)
-
-  (setq gptel-default-mode 'org-mode)
-
-  ;; default system prompt for all requests
-  (setq gptel--system-message
-        "You are a concise teaching assistant. Explain concepts clearly with examples when helpful. Keep responses brief and focused. Use plain text, not markdown."))
-
-(defun my/ai-explain-region (start end)
-  "Send selected region to LLM for explanation, insert response in a collapsible drawer."
-  (interactive "r")
-  (let ((text (buffer-substring-no-properties start end))
-        (insert-point (save-excursion (goto-char end) (end-of-line) (point))))
-    (gptel-request
-        (format "Explain the following concisely:\n\n%s" text)
-      :callback
-      (lambda (response _info)
-        (when response
-          (save-excursion
-            (goto-char insert-point)
-            (insert "\n:AI_EXPLAIN:\n" response "\n:END:\n")))))))
-
-(defun my/ai-ask (start end)
-  "Ask AI a question about the selected region. Response goes in a collapsible drawer."
-  (interactive "r")
-  (let* ((text (buffer-substring-no-properties start end))
-         (prompt (read-string "Ask AI: "))
-         (insert-point (save-excursion (goto-char end) (end-of-line) (point))))
-    (gptel-request
-        (format "Given the following code/text:\n\n%s\n\nUser question: %s\n\nIMPORTANT: Provide an explanation only. Do NOT rewrite or modify the code. Respond in plain text." text prompt)
-      :callback
-      (lambda (response _info)
-        (when response
-          (save-excursion
-            (goto-char insert-point)
-            (insert "\n:AI_EXPLAIN:\n" response "\n:END:\n")))))))
-
-(map! :leader
-      :prefix ("A" . "ai")
-      :desc "Ask AI" "a" #'my/ai-ask
-      :desc "Explain region" "e" #'my/ai-explain-region
-      :desc "Open gptel chat" "c" #'gptel)
 
 ;; Neovim muscle-memory migration
 ;;
@@ -291,14 +274,30 @@
       :desc "Open Doom config" "s n" #'doom/find-file-in-private-config
       :desc "Workspace symbols" "w s" #'consult-imenu-multi)
 
-(after! evil-easymotion
-  (map! :n "f" #'evil-avy-goto-char-timer
-        :v "f" #'evil-avy-goto-char-timer
-        :o "f" #'evil-avy-goto-char-timer
-        :n "F" #'evil-avy-goto-char-2
-        :v "F" #'evil-avy-goto-char-2
-        :o "F" #'evil-avy-goto-char-2
-        :o "r" #'evil-avy-goto-char-timer))
+(use-package! flash
+  :commands (flash-jump flash-treesitter flash-evil-jump)
+  :init
+  (setq flash-multi-window t
+        flash-char-jump-labels t)
+  :config
+  (require 'flash-isearch)
+  (flash-isearch-mode 1)
+  (require 'flash-evil)
+  (evil-global-set-key 'normal (kbd "f") #'flash-evil-jump)
+  (evil-global-set-key 'visual (kbd "f") #'flash-evil-jump)
+  (evil-global-set-key 'motion (kbd "f") #'flash-evil-jump)
+  (evil-global-set-key 'operator (kbd "f") #'flash-evil-jump)
+  (evil-global-set-key 'normal (kbd "F") #'flash-treesitter)
+  (evil-global-set-key 'visual (kbd "F") #'flash-treesitter)
+  (evil-global-set-key 'operator (kbd "r") #'flash-evil-jump))
+
+(after! leetcode
+  ;; leetcode.el installs its own evil local maps, which override global flash
+  ;; bindings in the problem list/detail buffers.
+  (evil-define-key 'normal leetcode--problems-mode-map (kbd "f") #'flash-evil-jump)
+  (evil-define-key 'normal leetcode--problems-mode-map (kbd "F") #'flash-treesitter)
+  (evil-define-key 'normal leetcode--problem-detail-mode-map (kbd "f") #'flash-evil-jump)
+  (evil-define-key 'normal leetcode--problem-detail-mode-map (kbd "F") #'flash-treesitter))
 
 (map! :g "C-1" #'+workspace/switch-to-0
       :g "C-2" #'+workspace/switch-to-1
