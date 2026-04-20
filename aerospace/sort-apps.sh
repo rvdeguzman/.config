@@ -17,31 +17,27 @@ move_app_windows() {
   done < <("$AEROSPACE_BIN" list-windows --all --app-bundle-id "$bundle_id" --format '%{window-id}')
 }
 
-# Workspace 1: terminal / nvim
+# Workspace 1: terminal / nvim / Zed (editors)
 move_app_windows 'com.mitchellh.ghostty' '1'
+move_app_windows 'dev.zed.Zed' '1'
 
-# Workspace 2: Doom Emacs
+# Workspace 2: Doom Emacs (i love emacs)
 move_app_windows 'org.gnu.Emacs' '2'
 move_app_windows 'org.gnu.EmacsMac' '2'
 
-# Workspace 3: Zed
-move_app_windows 'dev.zed.Zed' '3'
-
 # Workspace 4: browsers
-move_app_windows 'com.apple.Safari' '4'
-move_app_windows 'com.google.Chrome' '4'
-move_app_windows 'org.chromium.Chromium' '4'
-move_app_windows 'company.thebrowser.Browser' '4'
-move_app_windows 'org.mozilla.firefox' '4'
-move_app_windows 'com.brave.Browser' '4'
-move_app_windows 'com.microsoft.edgemac' '4'
+move_app_windows 'com.apple.Safari' '3'
+move_app_windows 'com.google.Chrome' '3'
+move_app_windows 'company.thebrowser.Browser' '3'
+move_app_windows 'org.mozilla.firefox' '3'
+move_app_windows 'com.brave.Browser' '3'
 
 # Workspace 5: AI tools
-move_app_windows 'com.openai.chat' '5'
-move_app_windows 'com.anthropic.claudefordesktop' '5'
+move_app_windows 'com.openai.chat' '4'
+move_app_windows 'com.anthropic.claudefordesktop' '4'
 
 # Workspace 6: agentic work
-move_app_windows 'com.cmuxterm.app' '6'
+move_app_windows 'com.cmuxterm.app' '5'
 
 # Workspace 9: file management
 move_app_windows 'com.apple.finder' '9'
