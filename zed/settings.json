@@ -7,6 +7,12 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "outline_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
   "lsp": {
     "vtsls": {
       "settings": {
@@ -47,6 +53,7 @@
     "active_language_button": true,
   },
   "collaboration_panel": {
+    "dock": "left",
     "button": false,
   },
   "show_wrap_guides": true,
@@ -110,6 +117,7 @@
     "calt": false,
   },
   "agent": {
+    "dock": "right",
     "single_file_review": false,
     "show_turn_stats": true,
     "enable_feedback": false,

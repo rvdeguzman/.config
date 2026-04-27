@@ -100,11 +100,11 @@ run = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
-run = ['layout tiling', 'move-node-to-workspace 4']
+run = ['layout tiling', 'move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-id = 'dev.zed.Zed'
-run = ['layout tiling', 'move-node-to-workspace 3']
+run = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
 if.app-id = 'org.gnu.Emacs'
@@ -112,35 +112,35 @@ run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = ['layout tiling', 'move-node-to-workspace 4']
+run = ['layout tiling', 'move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-id = 'org.chromium.Chromium'
-run = ['layout tiling', 'move-node-to-workspace 4']
+run = ['layout tiling', 'move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
-run = ['layout tiling', 'move-node-to-workspace 4']
+run = ['layout tiling', 'move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'
-run = ['layout tiling', 'move-node-to-workspace 4']
+run = ['layout tiling', 'move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-id = 'com.brave.Browser'
-run = ['layout tiling', 'move-node-to-workspace 4']
+run = ['layout tiling', 'move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.edgemac'
-run = ['layout tiling', 'move-node-to-workspace 4']
+run = ['layout tiling', 'move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-id = 'com.openai.chat'
-run = 'move-node-to-workspace 5'
+run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
 if.app-id = 'com.anthropic.claudefordesktop'
-run = 'move-node-to-workspace 5'
+run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
