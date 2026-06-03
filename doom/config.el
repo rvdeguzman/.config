@@ -200,9 +200,17 @@
         leetcode-directory (expand-file-name "~/leetcode/")
         leetcode-cache-file (expand-file-name ".local/cache/leetcode-problems.cache" doom-user-dir))
   :config
+  (defun rv/leetcode-renew-session ()
+    "Renew LeetCode session from browser cookies."
+    (interactive)
+    (aio-wait-for (leetcode--ensure-login t))
+    (message "LeetCode session renewed from browser cookies."))
+
   (map! :leader
         :desc "Open LeetCode"
-        "o l" #'leetcode))
+        "o l" #'leetcode
+        :desc "Renew LeetCode session"
+        "o L" #'rv/leetcode-renew-session))
 
 (defun org-roam-capture-here ()
   "new org roam node in pwd"
