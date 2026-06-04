@@ -3,10 +3,10 @@
   "schemaVersion": 1,
   "shortcuts": {
     "bindings": {
-      "splitRight": ["ctrl+a", "v"],
-      "splitDown": ["ctrl+a", "h"],
-      "nextSidebarTab": "cmd+ctrl+n",
-      "prevSidebarTab": "cmd+ctrl+p"
+      // "splitRight": ["ctrl+a", "v"],
+      // "splitDown": ["ctrl+a", "h"],
+      //  "nextSidebarTab": "cmd+ctrl+n",
+      //  "prevSidebarTab": "cmd+ctrl+p"
     }
   }
   // This file uses JSON with comments (JSONC).
