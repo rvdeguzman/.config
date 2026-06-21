@@ -6,10 +6,10 @@
       "custom_name": null,
       "identity_cwd": "/Users/rv/.config/herdr",
       "public_pane_numbers": {
+        "3": 3,
         "2": 2,
         "1": 1,
-        "4": 4,
-        "3": 3
+        "4": 4
       },
       "next_public_pane_number": 5,
       "public_tab_numbers": [
@@ -34,15 +34,15 @@
             }
           },
           "panes": {
-            "1": {
+            "2": {
               "cwd": "/Users/rv/.config/herdr"
             },
-            "2": {
+            "1": {
               "cwd": "/Users/rv/.config/herdr"
             }
           },
           "zoomed": false,
-          "focused": 2,
+          "focused": 1,
           "root_pane": 1
         },
         {
@@ -66,7 +66,7 @@
           },
           "panes": {
             "4": {
-              "cwd": "/Users/rv/.config/herdr"
+              "cwd": "/Users/rv"
             }
           },
           "zoomed": false,
@@ -74,7 +74,7 @@
           "root_pane": 4
         }
       ],
-      "active_tab": 2
+      "active_tab": 1
     }
   ],
   "active": 0,

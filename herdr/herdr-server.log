@@ -142,3 +142,46 @@
 2026-06-21T16:51:32.347473Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t3"
 2026-06-21T16:51:32.347520Z  INFO herdr::logging: tab created event="tab.create" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t3" pane_id=4
 2026-06-21T16:51:37.354275Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/rv/.config/herdr/session.json workspaces=1
+2026-06-21T16:52:20.494120Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-06-21T16:52:21.265059Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-06-21T16:52:24.967907Z  INFO herdr::logging: api request received event="api.request.start" subsystem="api" outcome="started" request_id="herdr:omp:release:1782060744863:dfpxe2w5024" method="pane.release_agent" changes_ui=true
+2026-06-21T16:52:24.968287Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="ok" request_id="herdr:omp:release:1782060744863:dfpxe2w5024" method="pane.release_agent"
+2026-06-21T16:52:26.271348Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/rv/.config/herdr/session.json workspaces=1
+2026-06-21T16:52:26.681362Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-06-21T16:52:27.528047Z  INFO herdr::logging: api request received event="api.request.start" subsystem="api" outcome="started" request_id="herdr:omp:release:1782060747427:cif19r9470t" method="pane.release_agent" changes_ui=true
+2026-06-21T16:52:27.528330Z  INFO herdr::logging: api request completed event="api.request.complete" subsystem="api" outcome="ok" request_id="herdr:omp:release:1782060747427:cif19r9470t" method="pane.release_agent"
+2026-06-21T16:52:29.702341Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-06-21T16:52:33.494825Z  INFO herdr::server::headless: client detach requested via keybind client_id=4
+2026-06-21T16:52:33.498736Z  INFO herdr::server::headless: client disconnected client_id=4
+2026-06-21T16:52:34.707097Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/rv/.config/herdr/session.json workspaces=1
+2026-06-21T16:53:09.907923Z  INFO herdr::server::headless: server shutdown initiated
+2026-06-21T16:53:09.963007Z  INFO herdr::server::headless: completing server shutdown
+2026-06-21T16:53:09.963470Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/rv/.config/herdr/session.json workspaces=1
+2026-06-21T16:53:09.963480Z  INFO herdr::server::headless: headless server exiting
+2026-06-21T16:53:09.964468Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=2 status="ExitStatus { code: 1, signal: None }"
+2026-06-21T16:53:09.986618Z  INFO herdr::pane: pane session terminated pane=2 pid=58621 signal=Hangup
+2026-06-21T16:53:09.987627Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=1 status="ExitStatus { code: 1, signal: None }"
+2026-06-21T16:53:10.011933Z  INFO herdr::pane: pane session terminated pane=1 pid=57433 signal=Hangup
+2026-06-21T16:53:10.012953Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=4 status="ExitStatus { code: 1, signal: None }"
+2026-06-21T16:53:10.037316Z  INFO herdr::pane: pane session terminated pane=4 pid=65312 signal=Hangup
+2026-06-21T16:53:10.038354Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=3 status="ExitStatus { code: 1, signal: None }"
+2026-06-21T16:53:10.062668Z  INFO herdr::pane: pane session terminated pane=3 pid=64752 signal=Hangup
+2026-06-21T16:53:10.063929Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="server" outcome="completed" pid=57432
+2026-06-21T16:53:16.184219Z  INFO herdr::platform::macos: raised server file descriptor soft limit previous=256 target=8192
+2026-06-21T16:53:16.184529Z  INFO herdr::api::server: api server listening path=/Users/rv/.config/herdr/herdr.sock
+2026-06-21T16:53:16.184908Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-06-21T16:53:16.187747Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=66634
+2026-06-21T16:53:16.187853Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-06-21T16:53:16.190127Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=66635
+2026-06-21T16:53:16.190234Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=3 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-06-21T16:53:16.193363Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=3 pid=66636
+2026-06-21T16:53:16.193486Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=4 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-06-21T16:53:16.195866Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=4 pid=66637
+2026-06-21T16:53:16.196083Z  INFO herdr::logging: session restore evaluated event="persist.restore" subsystem="persist" outcome="ok" workspaces=1
+2026-06-21T16:53:16.196094Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-06-21T16:53:16.215667Z  INFO herdr::server::headless: restored session already has workspaces; ignoring startup cwd cwd=/Users/rv/repos/agentic-sales-team
+2026-06-21T16:53:16.215694Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-21T16:53:16.215781Z  INFO herdr::server::headless: client protocol socket listening path=/Users/rv/.config/herdr/herdr-client.sock
+2026-06-21T16:53:16.215793Z  INFO herdr::server::headless: herdr server started api_socket=/Users/rv/.config/herdr/herdr.sock client_socket=/Users/rv/.config/herdr/herdr-client.sock
+2026-06-21T16:53:16.215807Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=66633
+2026-06-21T16:53:16.472444Z  INFO herdr::server::headless: client connected client_id=2 cols=185 rows=44 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
