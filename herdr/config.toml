@@ -1,0 +1,5 @@
+onboarding = false
+[theme]
+name = "gruvbox"
+[keys]
+prefix = "ctrl+a"
