@@ -9,6 +9,8 @@ font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 
+macos-option-as-alt = true
+
 # Window
 window-theme = ghostty
 window-padding-x = 14

@@ -61,13 +61,6 @@
   "scrollbar": {
     "show": "never",
   },
-  "context_servers": {
-    "mcp-server-context7": {
-      "enabled": true,
-      "remote": false,
-      "settings": {},
-    },
-  },
   "hover_popover_delay": 500,
   "icon_theme": {
     "mode": "dark",
