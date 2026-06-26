@@ -14,8 +14,8 @@ focus_pane_right = "ctrl+l"
 
 # Splits — tmux split-mode: v = left/right, h = top/bottom, x = delete pane
 # (herdr has no w-> submode; these are direct, w stays the workspace picker)
-split_vertical = "prefix+v"
-split_horizontal = "prefix+h"
+split_vertical = "prefix+d"
+split_horizontal = "prefix+shift+d"
 close_pane = "prefix+x"
 
 # Tabs ~ tmux windows
@@ -27,11 +27,11 @@ rename_tab = "prefix+r"         # tmux: r -> w rename-window
 
 # Workspaces ~ tmux sessions
 new_workspace = "prefix+shift+c"   # tmux: C new-session
-close_workspace = "prefix+q"       # tmux: q kill-session (confirm_close on)
+close_workspace = "prefix+shift+q" # tmux: q kill-session (confirm_close on)
 rename_workspace = "prefix+shift+w" # tmux: r -> s rename-session
 
 # Session / pane control
-detach = "prefix+d"                # tmux: d detach-client
+detach = "prefix+q"                # tmux: d detach-client
 zoom = "prefix+z"                  # tmux: z zoom-pane
 edit_scrollback = "prefix+y"       # closest to tmux: y copy-mode
 resize_mode = "prefix+shift+r"     # moved off r (rename took it)
