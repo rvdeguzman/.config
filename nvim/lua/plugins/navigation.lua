@@ -113,6 +113,50 @@ return {
     keys = {
       { "<leader>e", "<cmd>Oil<cr>", desc = "Open parent directory" },
     },
+    config = function(_, opts)
+      require("oil").setup(opts)
+      local oil_util = require("oil.util")
+      if not oil_util.rv_is_oil_bufnr_guarded then
+        local is_oil_bufnr = oil_util.is_oil_bufnr
+        oil_util.is_oil_bufnr = function(bufnr)
+          if bufnr == nil or not vim.api.nvim_buf_is_valid(bufnr) then
+            return false
+          end
+
+          return is_oil_bufnr(bufnr)
+        end
+        oil_util.rv_is_oil_bufnr_guarded = true
+      end
+
+      local group = vim.api.nvim_create_augroup("RvOilAutoPreview", { clear = true })
+      vim.api.nvim_create_autocmd("User", {
+        group = group,
+        pattern = "OilEnter",
+        desc = "Open Oil preview by default",
+        callback = function(event)
+          local bufnr = event.data and event.data.buf or event.buf
+          vim.schedule(function()
+            if not vim.api.nvim_buf_is_valid(bufnr) then
+              return
+            end
+
+            local win = vim.fn.bufwinid(bufnr)
+            if win == -1 or vim.wo[win].previewwindow or vim.w[win].oil_preview or vim.w[win].oil_auto_previewed then
+              return
+            end
+
+            local current_win = vim.api.nvim_get_current_win()
+            vim.api.nvim_set_current_win(win)
+            vim.w[win].oil_auto_previewed = true
+            require("oil").open_preview()
+
+            if vim.api.nvim_win_is_valid(current_win) then
+              vim.api.nvim_set_current_win(current_win)
+            end
+          end)
+        end,
+      })
+    end,
     opts = {
       default_file_explorer = true,
       columns = {
@@ -136,6 +180,9 @@ return {
       skip_confirm_for_simple_edits = false,
       prompt_save_on_select_new_entry = true,
       cleanup_delay_ms = 2000,
+      preview_win = {
+        preview_method = "load",
+      },
       lsp_file_methods = {
         enabled = true,
         timeout_ms = 1000,
