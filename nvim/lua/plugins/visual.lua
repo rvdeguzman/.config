@@ -1,14 +1,27 @@
 local dashboard_header = [[
-██████╗ ██╗   ██╗    ██████╗  ██████╗ ███████╗███████╗███████╗
-██╔══██╗██║   ██║    ██╔══██╗██╔════╝ ╚══███╔╝╚══███╔╝╚══███╔╝
-██████╔╝██║   ██║    ██║  ██║██║  ███╗  ███╔╝   ███╔╝   ███╔╝
-██╔══██╗╚██╗ ██╔╝    ██║  ██║██║   ██║ ███╔╝   ███╔╝   ███╔╝
-██║  ██║ ╚████╔╝     ██████╔╝╚██████╔╝███████╗███████╗███████╗
-╚═╝  ╚═╝  ╚═══╝      ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚══════╝]]
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⣠⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣡⣾⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⣿⣟⠻⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⡿⢫⣷⣿⣿⣿⣿⣿⣿⣿⣾⣯⣿⡿⢧⡚⢷⣌⣽⣿⣿⣿⣿⣿⣶⡌⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⠇⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣮⣇⣘⠿⢹⣿⣿⣿⣿⣿⣻⢿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⠀⢸⣿⣿⡇⣿⣿⣿⣿⣿⣿⣿⣿⡟⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣻⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⡇⠀⣬⠏⣿⡇⢻⣿⣿⣿⣿⣿⣿⣿⣷⣼⣿⣿⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⠀⠈⠁⠀⣿⡇⠘⡟⣿⣿⣿⣿⣿⣿⣿⣿⡏⠿⣿⣟⣿⣿⣿⣿⣿⣿⣿⣿⣇⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⡏⠀⠀⠐⠀⢻⣇⠀⠀⠹⣿⣿⣿⣿⣿⣿⣩⡶⠼⠟⠻⠞⣿⡈⠻⣟⢻⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⢿⠀⡆⠀⠘⢿⢻⡿⣿⣧⣷⢣⣶⡃⢀⣾⡆⡋⣧⠙⢿⣿⣿⣟⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⡥⠂⡐⠀⠁⠑⣾⣿⣿⣾⣿⣿⣿⡿⣷⣷⣿⣧⣾⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⡿⣿⣍⡴⠆⠀⠀⠀⠀⠀⠀⠀⠀⣼⣄⣀⣷⡄⣙⢿⣿⣿⣿⣿⣯⣶⣿⣿⢟⣾⣿⣿⢡⣿⣿⣿⣿⣿
+⣿⡏⣾⣿⣿⣿⣷⣦⠀⠀⠀⢀⡀⠀⠀⠠⣭⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⣡⣾⣿⣿⢏⣾⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⡴⠀⠀⠀⠀⠀⠠⠀⠰⣿⣿⣿⣷⣿⠿⠿⣿⣿⣭⡶⣫⠔⢻⢿⢇⣾⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⡿⢫⣽⣿⣿⠅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿
+⣿⣿⠟⣡⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿
+⣿⠁⣾⣿⣿⣿⣿⠇⣀⣀⠀⠀⠀⢀⣀⣤⣤⣤⣤⣤⣤⣤⣄⣀⡀⠀⠀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠈⢻⣿⣿
+⣧⡾⠿⠿⠿⠛⠁⠈⠛⠛⠛⠛⠛⠛⠉⠉⠉⠉⠉⠉⠉⠉⠉⠛⠛⠛⠛⠛⠛⠛⠁⠀⠀⠀⠀⠀⠀⠈⣿⣿
+⣿⣷⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣦⣤⣤⣤⣤⣄⣀⠀⠀⢹⣿]]
 
 local function footer()
   local v = vim.version()
-  return ("rv dgzzz   %s   v%d.%d.%d"):format(os.date("%H:%M  %d-%m-%Y"), v.major, v.minor, v.patch)
+  return ("󰚌 rv dgzzz   %s   v%d.%d.%d"):format(os.date("%H:%M  %d-%m-%Y"), v.major, v.minor, v.patch)
 end
 
 return {
@@ -105,8 +118,20 @@ return {
         enabled = false,
       })
 
+      opts.picker = vim.tbl_deep_extend("force", opts.picker or {}, {
+        layout = {
+          preset = "telescope",
+        },
+      })
+
       opts.dashboard = vim.tbl_deep_extend("force", opts.dashboard or {}, {
-        width = 72,
+        width = 80,
+        formats = {
+          desc = { "%s", hl = "Normal" },
+          footer = { "%s", align = "center", hl = "Number" },
+          header = { "%s", align = "center", hl = "Type" },
+          key = { "%s", hl = "Keyword" },
+        },
         preset = {
           header = dashboard_header,
           keys = {
@@ -120,7 +145,6 @@ return {
               action = ":lua Snacks.dashboard.pick('files', { cwd = vim.fn.stdpath('config') })",
             },
             { icon = "", key = "u", desc = "update plugins", action = ":Lazy sync" },
-            { icon = "", key = "x", desc = "lazy extras", action = ":LazyExtras" },
             { icon = "", key = "m", desc = "mason", action = ":Mason" },
             { icon = "", key = "q", desc = "quit", action = ":qa" },
           },
@@ -131,7 +155,6 @@ return {
           function()
             return { footer = footer(), padding = 1 }
           end,
-          { section = "startup" },
         },
       })
     end,

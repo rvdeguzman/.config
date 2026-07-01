@@ -28,7 +28,7 @@ map("n", "<leader>.", function()
 end, { desc = "Recent files" })
 
 map("n", "<leader>/", function()
-  Snacks.picker.lines({ layout = { preset = "select" } })
+  Snacks.picker.lines()
 end, { desc = "Buffer lines" })
 
 map("n", "<leader>sn", function()

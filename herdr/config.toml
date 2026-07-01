@@ -42,12 +42,12 @@ rename_tab = "prefix+comma"         # tmux: r -> w rename-window
 
 # Workspaces ~ tmux sessions
 new_workspace = "prefix+shift+c"   # tmux: C new-session
-close_workspace = "prefix+shift+q" # tmux: q kill-session (confirm_close on)
+close_workspace = "prefix+q" # tmux: q kill-session (confirm_close on)
 rename_workspace = "prefix+colon" # tmux: r -> s rename-session
 rename_pane = "prefix+semicolon"
 
 # Session / pane control
-detach = "prefix+q"                # tmux: d detach-client
+detach = "prefix+d"                # tmux: d detach-client
 zoom = "prefix+enter"                  # tmux: z zoom-pane
 edit_scrollback = "prefix+y"       # closest to tmux: y copy-mode
 resize_mode = "prefix+shift+r"     # moved off r (rename took it)
